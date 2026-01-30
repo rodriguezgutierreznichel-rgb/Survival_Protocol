@@ -1,0 +1,34 @@
+{
+    "name": "ControllersGame",
+    "maps": [
+        {
+            "name": "PlayerControllers",
+            "id": "17504c8f-3fd8-4cb0-a7e8-5940ed8b3a2b",
+            "actions": [
+                {
+                    "name": "RUN",
+                    "type": "Button",
+                    "id": "fa5cf80a-fef0-44fb-be25-3d6087909de0",
+                    "expectedControlType": "",
+                    "processors": "",
+                    "interactions": "",
+                    "initialStateCheck": false
+                }
+            ],
+            "bindings": [
+                {
+                    "name": "",
+                    "id": "f82833ad-6482-4292-93f2-00119b5e4660",
+                    "path": "<Keyboard>/w",
+                    "interactions": "Press",
+                    "processors": "",
+                    "groups": "",
+                    "action": "RUN",
+                    "isComposite": false,
+                    "isPartOfComposite": false
+                }
+            ]
+        }
+    ],
+    "controlSchemes": []
+}
