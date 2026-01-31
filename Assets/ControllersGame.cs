@@ -28,9 +28,27 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             ""id"": ""17504c8f-3fd8-4cb0-a7e8-5940ed8b3a2b"",
             ""actions"": [
                 {
-                    ""name"": ""RUN"",
+                    ""name"": ""WALKING"",
                     ""type"": ""Button"",
                     ""id"": ""fa5cf80a-fef0-44fb-be25-3d6087909de0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RUN"",
+                    ""type"": ""Button"",
+                    ""id"": ""302edd2e-d4d0-47d3-a9da-0a4f7cb5eee5"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""ATTACK"",
+                    ""type"": ""Button"",
+                    ""id"": ""1d1df7ba-b382-4d37-9689-9b76d1c7d829"",
                     ""expectedControlType"": """",
                     ""processors"": """",
                     ""interactions"": """",
@@ -45,6 +63,28 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""interactions"": ""Press"",
                     ""processors"": """",
                     ""groups"": """",
+                    ""action"": ""WALKING"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""3e3d66d7-8d4a-4ee2-8799-b602575eb904"",
+                    ""path"": ""<Keyboard>/e"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""ATTACK"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""ed6e30ac-463d-4343-8b1f-3550e22fac07"",
+                    ""path"": ""<Keyboard>/leftShift"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
                     ""action"": ""RUN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
@@ -56,7 +96,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
 }");
         // PlayerControllers
         m_PlayerControllers = asset.FindActionMap("PlayerControllers", throwIfNotFound: true);
+        m_PlayerControllers_WALKING = m_PlayerControllers.FindAction("WALKING", throwIfNotFound: true);
         m_PlayerControllers_RUN = m_PlayerControllers.FindAction("RUN", throwIfNotFound: true);
+        m_PlayerControllers_ATTACK = m_PlayerControllers.FindAction("ATTACK", throwIfNotFound: true);
     }
 
     ~@ControllersGame()
@@ -123,12 +165,16 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
     // PlayerControllers
     private readonly InputActionMap m_PlayerControllers;
     private List<IPlayerControllersActions> m_PlayerControllersActionsCallbackInterfaces = new List<IPlayerControllersActions>();
+    private readonly InputAction m_PlayerControllers_WALKING;
     private readonly InputAction m_PlayerControllers_RUN;
+    private readonly InputAction m_PlayerControllers_ATTACK;
     public struct PlayerControllersActions
     {
         private @ControllersGame m_Wrapper;
         public PlayerControllersActions(@ControllersGame wrapper) { m_Wrapper = wrapper; }
+        public InputAction @WALKING => m_Wrapper.m_PlayerControllers_WALKING;
         public InputAction @RUN => m_Wrapper.m_PlayerControllers_RUN;
+        public InputAction @ATTACK => m_Wrapper.m_PlayerControllers_ATTACK;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControllers; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -138,16 +184,28 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         {
             if (instance == null || m_Wrapper.m_PlayerControllersActionsCallbackInterfaces.Contains(instance)) return;
             m_Wrapper.m_PlayerControllersActionsCallbackInterfaces.Add(instance);
+            @WALKING.started += instance.OnWALKING;
+            @WALKING.performed += instance.OnWALKING;
+            @WALKING.canceled += instance.OnWALKING;
             @RUN.started += instance.OnRUN;
             @RUN.performed += instance.OnRUN;
             @RUN.canceled += instance.OnRUN;
+            @ATTACK.started += instance.OnATTACK;
+            @ATTACK.performed += instance.OnATTACK;
+            @ATTACK.canceled += instance.OnATTACK;
         }
 
         private void UnregisterCallbacks(IPlayerControllersActions instance)
         {
+            @WALKING.started -= instance.OnWALKING;
+            @WALKING.performed -= instance.OnWALKING;
+            @WALKING.canceled -= instance.OnWALKING;
             @RUN.started -= instance.OnRUN;
             @RUN.performed -= instance.OnRUN;
             @RUN.canceled -= instance.OnRUN;
+            @ATTACK.started -= instance.OnATTACK;
+            @ATTACK.performed -= instance.OnATTACK;
+            @ATTACK.canceled -= instance.OnATTACK;
         }
 
         public void RemoveCallbacks(IPlayerControllersActions instance)
@@ -167,6 +225,8 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
     public PlayerControllersActions @PlayerControllers => new PlayerControllersActions(this);
     public interface IPlayerControllersActions
     {
+        void OnWALKING(InputAction.CallbackContext context);
         void OnRUN(InputAction.CallbackContext context);
+        void OnATTACK(InputAction.CallbackContext context);
     }
 }
