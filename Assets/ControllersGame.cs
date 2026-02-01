@@ -53,6 +53,15 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""SHOOT"",
+                    ""type"": ""Button"",
+                    ""id"": ""dfa70385-67c5-4210-9bfe-529600dd3ae0"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -88,6 +97,17 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""action"": ""RUN"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""b31f66ea-4b8e-4b0f-82cd-7f6445acee32"",
+                    ""path"": ""<Mouse>/leftButton"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""SHOOT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -99,6 +119,7 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         m_PlayerControllers_WALKING = m_PlayerControllers.FindAction("WALKING", throwIfNotFound: true);
         m_PlayerControllers_RUN = m_PlayerControllers.FindAction("RUN", throwIfNotFound: true);
         m_PlayerControllers_ATTACK = m_PlayerControllers.FindAction("ATTACK", throwIfNotFound: true);
+        m_PlayerControllers_SHOOT = m_PlayerControllers.FindAction("SHOOT", throwIfNotFound: true);
     }
 
     ~@ControllersGame()
@@ -168,6 +189,7 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControllers_WALKING;
     private readonly InputAction m_PlayerControllers_RUN;
     private readonly InputAction m_PlayerControllers_ATTACK;
+    private readonly InputAction m_PlayerControllers_SHOOT;
     public struct PlayerControllersActions
     {
         private @ControllersGame m_Wrapper;
@@ -175,6 +197,7 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         public InputAction @WALKING => m_Wrapper.m_PlayerControllers_WALKING;
         public InputAction @RUN => m_Wrapper.m_PlayerControllers_RUN;
         public InputAction @ATTACK => m_Wrapper.m_PlayerControllers_ATTACK;
+        public InputAction @SHOOT => m_Wrapper.m_PlayerControllers_SHOOT;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControllers; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -193,6 +216,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             @ATTACK.started += instance.OnATTACK;
             @ATTACK.performed += instance.OnATTACK;
             @ATTACK.canceled += instance.OnATTACK;
+            @SHOOT.started += instance.OnSHOOT;
+            @SHOOT.performed += instance.OnSHOOT;
+            @SHOOT.canceled += instance.OnSHOOT;
         }
 
         private void UnregisterCallbacks(IPlayerControllersActions instance)
@@ -206,6 +232,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             @ATTACK.started -= instance.OnATTACK;
             @ATTACK.performed -= instance.OnATTACK;
             @ATTACK.canceled -= instance.OnATTACK;
+            @SHOOT.started -= instance.OnSHOOT;
+            @SHOOT.performed -= instance.OnSHOOT;
+            @SHOOT.canceled -= instance.OnSHOOT;
         }
 
         public void RemoveCallbacks(IPlayerControllersActions instance)
@@ -228,5 +257,6 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         void OnWALKING(InputAction.CallbackContext context);
         void OnRUN(InputAction.CallbackContext context);
         void OnATTACK(InputAction.CallbackContext context);
+        void OnSHOOT(InputAction.CallbackContext context);
     }
 }

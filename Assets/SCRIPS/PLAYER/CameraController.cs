@@ -27,9 +27,7 @@ public class CameraController : MonoBehaviour
 
         transform.Rotate(Vector3.up * input.x * sensibilidadMouse * Time.deltaTime);
 
-        Vector3 angle = _cameraAnchor.eulerAngles;
-        angle.x += input.y * sensibilidadMouse2 * Time.deltaTime;
-
-        _cameraAnchor.eulerAngles = angle;
+        
     }
+
 }
