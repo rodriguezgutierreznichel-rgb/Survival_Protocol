@@ -15,6 +15,7 @@ public class ShooterSystemPlayer : MonoBehaviour
 
     [SerializeField] float rotacion = 0.5f;
 
+    
 
     bool estaAtacando = false;
     public GameObject pistola;
@@ -24,6 +25,7 @@ public class ShooterSystemPlayer : MonoBehaviour
 
     private void Awake()
     {
+        
         controller = new ControllersGame();
         
     }

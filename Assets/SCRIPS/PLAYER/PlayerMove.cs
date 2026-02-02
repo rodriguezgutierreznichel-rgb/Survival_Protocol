@@ -1,4 +1,4 @@
-using Unity.VisualScripting;
+﻿using Unity.VisualScripting;
 using UnityEditor.ShaderGraph;
 using UnityEngine;
 using UnityEngine.InputSystem;
@@ -34,6 +34,9 @@ public class PlayerMove : MonoBehaviour
     public void Update()
     {
         Caminar();
+        CaminarHaciaAtras();
+        CaminarHaciaLaIzquierda();
+        CaminarHaciaLaDerecha();
     }
 
     public void Caminar()
@@ -65,12 +68,48 @@ public class PlayerMove : MonoBehaviour
         }
     }
 
-    
-    
+    public void CaminarHaciaAtras()
+    {
+        bool estaCaminandoHaciaAtras = controller.PlayerControllers.BACKWARDS.IsPressed();
 
-   
+        if (estaCaminandoHaciaAtras == true)
+        {
+            animator.SetBool("BACKWARDS", true);
+            transform.Translate(Vector3.back * speedWalking * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("BACKWARDS", false);
+        }
+    }
 
+    public void CaminarHaciaLaIzquierda()
+    {
+        bool estaCaminandoHaciaLaIzquierda = controller.PlayerControllers.LEFT.IsPressed();
 
+        if (estaCaminandoHaciaLaIzquierda == true)
+        {
+            animator.SetBool("LEFT", true);
+            transform.Translate(Vector3.left * speedWalking * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("LEFT", false);
+        }
+    }
 
+    public void CaminarHaciaLaDerecha()
+    {
+        bool estaCaminandoHaciaLaDerecha = controller.PlayerControllers.RIGHT.IsPressed();
 
+        if (estaCaminandoHaciaLaDerecha == true)
+        {
+            animator.SetBool("RIGHT", true);
+            transform.Translate(Vector3.right * speedWalking * Time.deltaTime);
+        }
+        else
+        {
+            animator.SetBool("RIGHT", false);
+        }
+    }
 }

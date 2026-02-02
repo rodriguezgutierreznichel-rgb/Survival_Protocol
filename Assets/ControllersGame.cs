@@ -62,6 +62,33 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""BACKWARDS"",
+                    ""type"": ""Button"",
+                    ""id"": ""94e03eff-f4a9-4053-9c6b-01433354781a"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""LEFT"",
+                    ""type"": ""Button"",
+                    ""id"": ""557c5e50-68a3-4173-ab6f-a551f2f3d209"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""RIGHT"",
+                    ""type"": ""Button"",
+                    ""id"": ""3ccf41ae-78ae-43f2-997d-3cf093bba49d"",
+                    ""expectedControlType"": """",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": false
                 }
             ],
             ""bindings"": [
@@ -108,6 +135,39 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""action"": ""SHOOT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""28adf8a6-5255-4da1-b949-109b2a2c4e57"",
+                    ""path"": ""<Keyboard>/s"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""BACKWARDS"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""bfbb9892-2162-43db-92ac-1d4497f4609e"",
+                    ""path"": ""<Keyboard>/a"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""LEFT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""36f88234-8b41-4f4e-90a3-25bc628a8c5b"",
+                    ""path"": ""<Keyboard>/d"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""RIGHT"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -120,6 +180,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         m_PlayerControllers_RUN = m_PlayerControllers.FindAction("RUN", throwIfNotFound: true);
         m_PlayerControllers_ATTACK = m_PlayerControllers.FindAction("ATTACK", throwIfNotFound: true);
         m_PlayerControllers_SHOOT = m_PlayerControllers.FindAction("SHOOT", throwIfNotFound: true);
+        m_PlayerControllers_BACKWARDS = m_PlayerControllers.FindAction("BACKWARDS", throwIfNotFound: true);
+        m_PlayerControllers_LEFT = m_PlayerControllers.FindAction("LEFT", throwIfNotFound: true);
+        m_PlayerControllers_RIGHT = m_PlayerControllers.FindAction("RIGHT", throwIfNotFound: true);
     }
 
     ~@ControllersGame()
@@ -190,6 +253,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControllers_RUN;
     private readonly InputAction m_PlayerControllers_ATTACK;
     private readonly InputAction m_PlayerControllers_SHOOT;
+    private readonly InputAction m_PlayerControllers_BACKWARDS;
+    private readonly InputAction m_PlayerControllers_LEFT;
+    private readonly InputAction m_PlayerControllers_RIGHT;
     public struct PlayerControllersActions
     {
         private @ControllersGame m_Wrapper;
@@ -198,6 +264,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         public InputAction @RUN => m_Wrapper.m_PlayerControllers_RUN;
         public InputAction @ATTACK => m_Wrapper.m_PlayerControllers_ATTACK;
         public InputAction @SHOOT => m_Wrapper.m_PlayerControllers_SHOOT;
+        public InputAction @BACKWARDS => m_Wrapper.m_PlayerControllers_BACKWARDS;
+        public InputAction @LEFT => m_Wrapper.m_PlayerControllers_LEFT;
+        public InputAction @RIGHT => m_Wrapper.m_PlayerControllers_RIGHT;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControllers; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -219,6 +288,15 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             @SHOOT.started += instance.OnSHOOT;
             @SHOOT.performed += instance.OnSHOOT;
             @SHOOT.canceled += instance.OnSHOOT;
+            @BACKWARDS.started += instance.OnBACKWARDS;
+            @BACKWARDS.performed += instance.OnBACKWARDS;
+            @BACKWARDS.canceled += instance.OnBACKWARDS;
+            @LEFT.started += instance.OnLEFT;
+            @LEFT.performed += instance.OnLEFT;
+            @LEFT.canceled += instance.OnLEFT;
+            @RIGHT.started += instance.OnRIGHT;
+            @RIGHT.performed += instance.OnRIGHT;
+            @RIGHT.canceled += instance.OnRIGHT;
         }
 
         private void UnregisterCallbacks(IPlayerControllersActions instance)
@@ -235,6 +313,15 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             @SHOOT.started -= instance.OnSHOOT;
             @SHOOT.performed -= instance.OnSHOOT;
             @SHOOT.canceled -= instance.OnSHOOT;
+            @BACKWARDS.started -= instance.OnBACKWARDS;
+            @BACKWARDS.performed -= instance.OnBACKWARDS;
+            @BACKWARDS.canceled -= instance.OnBACKWARDS;
+            @LEFT.started -= instance.OnLEFT;
+            @LEFT.performed -= instance.OnLEFT;
+            @LEFT.canceled -= instance.OnLEFT;
+            @RIGHT.started -= instance.OnRIGHT;
+            @RIGHT.performed -= instance.OnRIGHT;
+            @RIGHT.canceled -= instance.OnRIGHT;
         }
 
         public void RemoveCallbacks(IPlayerControllersActions instance)
@@ -258,5 +345,8 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         void OnRUN(InputAction.CallbackContext context);
         void OnATTACK(InputAction.CallbackContext context);
         void OnSHOOT(InputAction.CallbackContext context);
+        void OnBACKWARDS(InputAction.CallbackContext context);
+        void OnLEFT(InputAction.CallbackContext context);
+        void OnRIGHT(InputAction.CallbackContext context);
     }
 }
