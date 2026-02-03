@@ -5,23 +5,19 @@ public class ShooterSystemPlayer : MonoBehaviour
 {
     private ControllersGame controller;
 
-    [SerializeField] GameObject mirilla;
+    public GameObject bala;
+    public Transform spawnPoint;
+    public float fuerzaDeDisparo = 100f;
 
-    [SerializeField] GameObject bala;
-
-    [SerializeField] Transform puntoDeDisparo;
-
-    [SerializeField] float fuerzaDeDisparo = 100f;
-
-    [SerializeField] float rotacion = 0.5f;
-
+    public float tiempoDisponible = 5f;
+    public float tiempoDeDisparo = 0f;
     
-
-    bool estaAtacando = false;
     public GameObject pistola;
-    [SerializeField]
-    Animator animator;
 
+    [SerializeField] Animator animator;
+
+    bool estaAtacando;
+    bool estaDisparando;
 
     private void Awake()
     {
@@ -36,39 +32,46 @@ public class ShooterSystemPlayer : MonoBehaviour
     }
     private void OnDisable()
     {
+       
         controller.Disable();
     }
 
     // Update is called once per frame
     void Update()
     {
+        if (tiempoDisponible < tiempoDeDisparo)
+        {
+            
+            tiempoDisponible += Time.deltaTime;
+            
+        }
+
         Disparar();
     }
 
     public void Disparar()
     {
         estaAtacando = controller.PlayerControllers.ATTACK.IsPressed();
-        pistola.SetActive(estaAtacando);
-        animator.SetBool("ATTACK", estaAtacando);
+        estaDisparando = controller.PlayerControllers.SHOOT.WasPressedThisFrame();
 
-        bool estaDisparando = controller.PlayerControllers.SHOOT.WasPressedThisFrame();
-
-        if (estaDisparando && estaAtacando)
+        if (estaAtacando == true)
         {
-            GameObject nuevaBala = Instantiate(
-                bala,
-                puntoDeDisparo.position,
-                Quaternion.identity
-            );
+            animator.SetBool("ATTACK", true);
+            if (estaDisparando == true && tiempoDisponible >= tiempoDeDisparo)
+            {
+                
+                tiempoDisponible = 0;
 
-            Vector3 direccion = (mirilla.transform.position - puntoDeDisparo.position).normalized;
-
-            Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
-            rb.AddForce(direccion * fuerzaDeDisparo, ForceMode.Impulse);
-
-           
+                GameObject nuevaBala;
+                nuevaBala = Instantiate(bala,spawnPoint.position, spawnPoint.rotation);
+                nuevaBala.GetComponent<Rigidbody>().AddForce(spawnPoint.forward*fuerzaDeDisparo);
+                
+            }
+        }
+        else
+        {
+            animator.SetBool("ATTACK", false);
         }
     }
-
    
 }
