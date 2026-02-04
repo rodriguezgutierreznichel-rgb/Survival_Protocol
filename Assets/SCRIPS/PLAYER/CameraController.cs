@@ -2,17 +2,17 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
-    [SerializeField] float sensibilidadMouse = 0f;
-    [SerializeField] float sensibilidadMouse2 = 0f;
+    [SerializeField] float sensibilidadHorizontal = 0f;
+    [SerializeField] float sensibilidadVertical = 0f;
 
-    [SerializeField] Transform _cameraAnchor = null;
+    [SerializeField] Transform cameraAnchor = null;
 
-    InputController _inputController = null;
+    InputController inputController = null;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
-        _inputController = GetComponent<InputController>();
+        inputController = GetComponent<InputController>();
     }
 
     // Update is called once per frame
@@ -23,11 +23,11 @@ public class CameraController : MonoBehaviour
 
     void MoverCamara()
     {
-        Vector2 input = _inputController.MouseInput();
+        Vector2 input = inputController.MoverInput();
 
-        transform.Rotate(Vector3.up * input.x * sensibilidadMouse * Time.deltaTime);
+        transform.Rotate(Vector3.up * input.x * sensibilidadHorizontal * Time.deltaTime);
 
-        
+        cameraAnchor.Rotate(Vector3.right * input.y * sensibilidadVertical * Time.deltaTime);
     }
 
 }

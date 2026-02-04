@@ -5,7 +5,7 @@ public class EnemyController : MonoBehaviour
     public Transform player;
 
     public float speed = 3f;
-    public float distanciaVision = 5f;
+    public float distanciaVision = 15f;
     public float distanciaDeAtaque = 10f;
 
     [SerializeField]
@@ -59,10 +59,17 @@ public class EnemyController : MonoBehaviour
         {
             atacar();
         }
+        else
+        {
+            animator.SetBool("ATTACK", false);
+        }
     }
 
     public void atacar()
     {
-        Debug.Log("TE ATACO MALDITO");
+        animator.SetBool("RUN", false); 
+        Debug.Log("PIU PIU");
+        speed = 0;
+        animator.SetBool("ATTACK", true);
     }
 }
