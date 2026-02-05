@@ -56,12 +56,14 @@ public class ShooterSystemPlayer : MonoBehaviour
 
         if (estaAtacando == true)
         {
+            
+
             animator.SetBool("ATTACK", true);
             if (estaDisparando == true && tiempoDisponible >= tiempoDeDisparo)
             {
                 
                 tiempoDisponible = 0;
-
+               
                 GameObject nuevaBala;
                 nuevaBala = Instantiate(bala,spawnPoint.position, spawnPoint.rotation);
                 nuevaBala.GetComponent<Rigidbody>().AddForce(spawnPoint.forward*fuerzaDeDisparo);

@@ -27,7 +27,7 @@ public class CameraController : MonoBehaviour
 
         transform.Rotate(Vector3.up * input.x * sensibilidadHorizontal * Time.deltaTime);
 
-        cameraAnchor.Rotate(Vector3.right * input.y * sensibilidadVertical * Time.deltaTime);
+       
     }
 
 }
