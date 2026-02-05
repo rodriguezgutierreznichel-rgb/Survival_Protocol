@@ -6,6 +6,7 @@ TagManager:
   tags:
   - CinemachineTarget
   - Obstaculo
+  - ENEMIGO
   layers:
   - Default
   - TransparentFX
