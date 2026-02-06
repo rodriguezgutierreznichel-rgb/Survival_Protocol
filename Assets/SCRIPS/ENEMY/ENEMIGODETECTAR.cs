@@ -1,9 +1,14 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class ENEMIGODETECTAR : MonoBehaviour
 {
-    public float distanciaMaxima = 10f;
+    [SerializeField] GameObject enemigo;
+    [SerializeField] float distancia;
+    [SerializeField] GameObject vista;
 
+    [SerializeField] NavMeshAgent agent;
+    [SerializeField] Transform player;
     void Start()
     {
         
@@ -14,15 +19,18 @@ public class ENEMIGODETECTAR : MonoBehaviour
        
     }
 
-    void OnTriggerEnter(Collider other)
+    void OnTriggerStay(Collider other)
     {
         
-        Ray ray = new Ray (transform.position, transform.forward);
+        Vector3 origin = vista.transform.position;
+        Vector3 direction = vista.transform.forward * distancia;
+        Ray ray = new Ray (origin, direction);
         RaycastHit hit;
-        
-        if (other.CompareTag("Player") && Physics.Raycast(ray, out hit, distanciaMaxima) && hit.collider.CompareTag("Player"))
+
+        Debug.DrawRay(origin, direction, Color.red);
+        if (other.CompareTag("Player") && Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Player"))
         {
-           
+            agent.SetDestination(player.position);
             Debug.Log("Te persigo");
         }
     }
