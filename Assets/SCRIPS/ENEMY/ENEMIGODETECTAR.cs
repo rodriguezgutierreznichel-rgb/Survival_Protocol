@@ -9,6 +9,10 @@ public class ENEMIGODETECTAR : MonoBehaviour
 
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Transform player;
+
+    [SerializeField] Animator animator;
+
+
     void Start()
     {
         
@@ -21,7 +25,11 @@ public class ENEMIGODETECTAR : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        
+        Vector3 rotar = player.position - enemigo.transform.position;
+        rotar.y = 0;
+        enemigo.transform.rotation = Quaternion.LookRotation(rotar);
+
+
         Vector3 origin = vista.transform.position;
         Vector3 direction = vista.transform.forward * distancia;
         Ray ray = new Ray (origin, direction);
@@ -32,6 +40,17 @@ public class ENEMIGODETECTAR : MonoBehaviour
         {
             agent.SetDestination(player.position);
             Debug.Log("Te persigo");
+            animator.SetBool("RUN", true);
+        }
+    }
+
+    void OnTriggerExit(Collider other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            animator.SetBool("RUN", false);
+            
+            Debug.Log("Te perdí");
         }
     }
 }

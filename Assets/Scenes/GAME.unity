@@ -1837,6 +1837,7 @@ MonoBehaviour:
   vista: {fileID: 23984990}
   agent: {fileID: 5855111973277731195}
   player: {fileID: 93199168}
+  animator: {fileID: 5855111973277731189}
 --- !u!1001 &1333424628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2994,6 +2995,7 @@ MonoBehaviour:
   vista: {fileID: 0}
   agent: {fileID: 0}
   player: {fileID: 0}
+  animator: {fileID: 0}
 --- !u!4 &1987108798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6791860291010798096, guid: 48cd3b5b38dcabb49955d972512eb6a8, type: 3}
