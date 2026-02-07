@@ -12,19 +12,39 @@ public class ENEMIGODETECTAR : MonoBehaviour
 
     [SerializeField] Animator animator;
 
+    [SerializeField] Transform[] posiciones;
+    bool persiguiendo = false;
+    [SerializeField] float velocidadPatrulla = 2f;
+
+
+
 
     void Start()
     {
-        
+        persiguiendo = false;
     }
 
     public void Update()
     {
-       
+        if (persiguiendo == false)
+        {
+            patrullar();
+        }
+
+      
+    }
+
+    public void patrullar()
+    {
+        animator.SetBool("WALKING", true);
+        agent.SetDestination(posiciones[0].position);
+        
     }
 
     void OnTriggerStay(Collider other)
     {
+        persiguiendo = true;
+       
         Vector3 rotar = player.position - enemigo.transform.position;
         rotar.y = 0;
         enemigo.transform.rotation = Quaternion.LookRotation(rotar);
@@ -41,6 +61,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
             agent.SetDestination(player.position);
             Debug.Log("Te persigo");
             animator.SetBool("RUN", true);
+            animator.SetBool("WALKING", false);
         }
     }
 
@@ -51,6 +72,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
             animator.SetBool("RUN", false);
             
             Debug.Log("Te perdí");
+            persiguiendo = false;
         }
     }
 }
