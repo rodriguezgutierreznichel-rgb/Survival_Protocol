@@ -363,6 +363,37 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6791860291010798096, guid: 48cd3b5b38dcabb49955d972512eb6a8, type: 3}
   m_PrefabInstance: {fileID: 1223019532}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &145713866
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 145713867}
+  m_Layer: 8
+  m_Name: PuntoDeDisparo
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &145713867
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 145713866}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -0.018, y: 1.431, z: 0.24}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1749964750}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &262253071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1905,6 +1936,14 @@ MonoBehaviour:
   - {fileID: 751848943}
   - {fileID: 1666420528}
   velocidadPatrulla: 2
+  Player: {fileID: 93199168}
+  distanciaDeAtaque: 1
+  bala: {fileID: 1419460451167081188, guid: e07b6c3e26895fa41bb5b4dc9c60bd8e, type: 3}
+  puntoDeDisparo: {fileID: 145713867}
+  fuerzaDeDisparo: 14
+  tiempoDisponible: 5
+  tiempoDeDisparo: 10
+  tiempoEntreDisparos: 1.5
 --- !u!1001 &1333424628
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2743,6 +2782,7 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children:
   - {fileID: 1987108798}
+  - {fileID: 145713867}
   m_Father: {fileID: 1746083500}
   m_LocalEulerAnglesHint: {x: 74.4, y: 185.45, z: 0}
 --- !u!1 &1763503044
@@ -3035,6 +3075,14 @@ MonoBehaviour:
   animator: {fileID: 0}
   posiciones: []
   velocidadPatrulla: 2
+  Player: {fileID: 0}
+  distanciaDeAtaque: 5
+  bala: {fileID: 0}
+  puntoDeDisparo: {fileID: 0}
+  fuerzaDeDisparo: 100
+  tiempoDisponible: 5
+  tiempoDeDisparo: 0
+  tiempoEntreDisparos: 1.5
 --- !u!1 &1956886245
 GameObject:
   m_ObjectHideFlags: 0

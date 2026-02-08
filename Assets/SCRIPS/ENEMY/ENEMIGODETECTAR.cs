@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class ENEMIGODETECTAR : MonoBehaviour
@@ -16,7 +16,17 @@ public class ENEMIGODETECTAR : MonoBehaviour
     bool persiguiendo = false;
     [SerializeField] float velocidadPatrulla = 2f;
 
+    [SerializeField] Transform Player;
+    [SerializeField] float distanciaDeAtaque = 5f;
 
+    public GameObject bala;
+    public Transform puntoDeDisparo;
+    public float fuerzaDeDisparo = 100f;
+    bool estaDisparando;
+    public float tiempoDisponible = 5f;
+    public float tiempoDeDisparo = 0f;
+    float siguienteDisparo = 0f;
+    public float tiempoEntreDisparos = 1.5f;
 
 
     void Start()
@@ -26,18 +36,18 @@ public class ENEMIGODETECTAR : MonoBehaviour
 
     public void Update()
     {
-        if (persiguiendo == false)
-        {
-            patrullar();
-        }
+        //if (persiguiendo == false)
+        //{
+          //  patrullar();
+        //}
 
       
     }
 
     public void patrullar()
     {
-        animator.SetBool("WALKING", true);
-        agent.SetDestination(posiciones[0].position);
+        //animator.SetBool("WALKING", true);
+       // agent.SetDestination(posiciones[0].position);
         
     }
 
@@ -58,10 +68,18 @@ public class ENEMIGODETECTAR : MonoBehaviour
         Debug.DrawRay(origin, direction, Color.red);
         if (other.CompareTag("Player") && Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Player"))
         {
-            agent.SetDestination(player.position);
-            Debug.Log("Te persigo");
-            animator.SetBool("RUN", true);
-            animator.SetBool("WALKING", false);
+            perseguir();
+
+            if (Vector3.Distance(transform.position, player.transform.position) <= distanciaDeAtaque)
+            {
+                Atacar();
+            }
+            else
+            {
+                animator.SetBool("ATTACK", false);
+                animator.SetBool("RUN", true);
+                agent.SetDestination(player.position);
+            }
         }
     }
 
@@ -71,8 +89,45 @@ public class ENEMIGODETECTAR : MonoBehaviour
         {
             animator.SetBool("RUN", false);
             
-            Debug.Log("Te perd�");
+            Debug.Log("Te perdí");
             persiguiendo = false;
         }
+    }
+
+    public void Atacar()
+    {
+        agent.isStopped = true;
+        animator.SetBool("RUN", false);
+        animator.SetBool("ATTACK", true);
+        animator.SetBool("WALKING", false);
+        Debug.Log("Te ataco");
+        estaDisparando = true;
+
+        if (Time.time >= siguienteDisparo)
+        {
+            siguienteDisparo = Time.time + tiempoEntreDisparos;
+            Disparar();
+        }
+    }
+
+    void Disparar()
+    {
+        GameObject nuevaBala = Instantiate(
+            bala,
+            puntoDeDisparo.position,
+            puntoDeDisparo.rotation
+        );
+
+        Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
+        rb.AddForce(puntoDeDisparo.forward * fuerzaDeDisparo, ForceMode.Impulse);
+    }
+
+    public void perseguir()
+    {
+        agent.SetDestination(player.position);
+        Debug.Log("Te persigo");
+        animator.SetBool("RUN", true);
+        animator.SetBool("WALKING", false);
+        estaDisparando = false;
     }
 }
