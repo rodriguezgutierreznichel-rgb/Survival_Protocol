@@ -22,12 +22,13 @@ public class ENEMIGODETECTAR : MonoBehaviour
     public GameObject bala;
     public Transform puntoDeDisparo;
     public float fuerzaDeDisparo = 100f;
-    bool estaDisparando;
+    
     public float tiempoDisponible = 5f;
     public float tiempoDeDisparo = 0f;
     float siguienteDisparo = 0f;
     public float tiempoEntreDisparos = 1.5f;
 
+    public float probabilidadDeAcierto = 0.5f;
 
     void Start()
     {
@@ -76,9 +77,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
             }
             else
             {
-                animator.SetBool("ATTACK", false);
-                animator.SetBool("RUN", true);
-                agent.SetDestination(player.position);
+                perseguir();
             }
         }
     }
@@ -101,7 +100,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
         animator.SetBool("ATTACK", true);
         animator.SetBool("WALKING", false);
         Debug.Log("Te ataco");
-        estaDisparando = true;
+        
 
         if (Time.time >= siguienteDisparo)
         {
@@ -112,14 +111,19 @@ public class ENEMIGODETECTAR : MonoBehaviour
 
     void Disparar()
     {
-        GameObject nuevaBala = Instantiate(
-            bala,
-            puntoDeDisparo.position,
-            puntoDeDisparo.rotation
-        );
-
+        GameObject nuevaBala = Instantiate(bala, puntoDeDisparo.position, puntoDeDisparo.rotation);
         Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
-        rb.AddForce(puntoDeDisparo.forward * fuerzaDeDisparo, ForceMode.Impulse);
+
+        Vector3 direccion = puntoDeDisparo.forward;
+
+        // 50% de probabilidad
+        if (Random.value > probabilidadDeAcierto)
+        {
+            // Falla: desviamos el disparo
+            direccion += new Vector3(1f, 0f, 0f);
+        }
+
+        rb.AddForce(direccion.normalized * fuerzaDeDisparo, ForceMode.Impulse);
     }
 
     public void perseguir()
@@ -128,6 +132,6 @@ public class ENEMIGODETECTAR : MonoBehaviour
         Debug.Log("Te persigo");
         animator.SetBool("RUN", true);
         animator.SetBool("WALKING", false);
-        estaDisparando = false;
+        
     }
 }
