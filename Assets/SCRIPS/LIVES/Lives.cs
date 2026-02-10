@@ -6,6 +6,10 @@ public class Lives : MonoBehaviour
     public int vidas = 3;
     public int vidasEnemigo = 3;
 
+    [SerializeField] Animator animatorEnemigo;
+    [SerializeField] Animator animatorPlayer;
+
+    bool enemigoMuerto = false;
     public void Awake()
     {
         if (instance == null)
@@ -36,11 +40,14 @@ public class Lives : MonoBehaviour
 
     public void PerderVidasEnemigo(int vidasPerdidasEnemigo)
     {
-        vidasEnemigo = vidasEnemigo - vidasPerdidasEnemigo;
+
+        vidasEnemigo -= vidasPerdidasEnemigo;
 
         if (vidasEnemigo <= 0)
         {
+            enemigoMuerto = true;
             Debug.Log("Has matado al enemigo");
+            animatorEnemigo.SetBool("DEAD", true);
         }
     }
 }

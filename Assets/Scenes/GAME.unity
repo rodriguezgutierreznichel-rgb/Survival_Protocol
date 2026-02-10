@@ -520,7 +520,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &317926648
 Transform:
   m_ObjectHideFlags: 0
@@ -1372,6 +1372,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   vidas: 3
   vidasEnemigo: 3
+  animatorEnemigo: {fileID: 5855111973277731189}
+  animatorPlayer: {fileID: 93199164}
 --- !u!4 &1014818574
 Transform:
   m_ObjectHideFlags: 0
@@ -2871,7 +2873,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1749964750
 Transform:
   m_ObjectHideFlags: 0
@@ -3457,7 +3459,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1605339211735979328, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 0.98
+      value: 0.18
       objectReference: {fileID: 0}
     - target: {fileID: 1605339211735979328, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_LocalPosition.z
