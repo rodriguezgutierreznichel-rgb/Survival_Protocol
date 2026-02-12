@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.AI;
 
 public class Lives : MonoBehaviour
 {
@@ -13,6 +14,10 @@ public class Lives : MonoBehaviour
 
     [SerializeField] PlayerMove playerMove;
     [SerializeField] Vista vista;
+
+    [SerializeField] GameObject enemigo;
+    [SerializeField] Transform muerteEnemigo;
+    [SerializeField] NavMeshAgent agent;
 
     bool enemigoMuerto = false;
     public void Awake()
@@ -58,6 +63,7 @@ public class Lives : MonoBehaviour
             Debug.Log("Has matado al enemigo");
             animatorEnemigo.SetBool("DEAD", true);
             rastreador.SetActive(false);
+            agent.SetDestination(muerteEnemigo.transform.position);
         }
     }
 }

@@ -916,37 +916,6 @@ MonoBehaviour:
   m_LightCookieSize: {x: 1, y: 1}
   m_LightCookieOffset: {x: 0, y: 0}
   m_SoftShadowQuality: 1
---- !u!1 &531882081
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 531882082}
-  m_Layer: 0
-  m_Name: 2 (1)
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &531882082
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 531882081}
-  serializedVersion: 2
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 12.2, y: 0.05, z: -5.1}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 1387029400}
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &751848942
 GameObject:
   m_ObjectHideFlags: 0
@@ -1377,6 +1346,9 @@ MonoBehaviour:
   rastreador: {fileID: 1312760203}
   playerMove: {fileID: 93199166}
   vista: {fileID: 93199175}
+  enemigo: {fileID: 5855111973277731191}
+  muerteEnemigo: {fileID: 1611238214}
+  agent: {fileID: 5855111973277731195}
 --- !u!4 &1014818574
 Transform:
   m_ObjectHideFlags: 0
@@ -1909,8 +1881,7 @@ GameObject:
   - component: {fileID: 1312760207}
   - component: {fileID: 1312760206}
   - component: {fileID: 1312760205}
-  - component: {fileID: 1312760208}
-  - component: {fileID: 1312760209}
+  - component: {fileID: 1312760210}
   m_Layer: 0
   m_Name: Rastreador
   m_TagString: Untagged
@@ -2007,21 +1978,7 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1312760203}
   m_Mesh: {fileID: 10202, guid: 0000000000000000e000000000000000, type: 0}
---- !u!114 &1312760208
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1312760203}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 22c8132e2645af5429a5052704182f42, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 93199168}
-  agent: {fileID: 5855111973277731195}
---- !u!114 &1312760209
+--- !u!114 &1312760210
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -2030,7 +1987,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1312760203}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e6fa7c079e038e24bb40b7a35f828234, type: 3}
+  m_Script: {fileID: 11500000, guid: bf0cbcebdea6c97479604d87164f23f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   enemigo: {fileID: 5855111973277731191}
@@ -2043,6 +2000,7 @@ MonoBehaviour:
   - {fileID: 1956886246}
   - {fileID: 751848943}
   - {fileID: 1666420528}
+  persiguiendo: 0
   velocidadPatrulla: 2
   Player: {fileID: 93199168}
   distanciaDeAtaque: 1
@@ -2051,7 +2009,6 @@ MonoBehaviour:
   fuerzaDeDisparo: 14
   tiempoDisponible: 5
   tiempoDeDisparo: 10
-  tiempoEntreDisparos: 1.5
   probabilidadDeAcierto: 0.5
 --- !u!1001 &1333424628
 PrefabInstance:
@@ -2822,8 +2779,38 @@ Transform:
   - {fileID: 1956886246}
   - {fileID: 751848943}
   - {fileID: 1666420528}
-  - {fileID: 531882082}
   m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1611238213
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1611238214}
+  m_Layer: 0
+  m_Name: MUERTE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1611238214
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1611238213}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 5855111973277731198}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1666420527
 GameObject:
@@ -2855,6 +2842,70 @@ Transform:
   m_ConstrainProportionsScale: 0
   m_Children: []
   m_Father: {fileID: 1387029400}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1710129287
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1710129289}
+  - component: {fileID: 1710129288}
+  m_Layer: 0
+  m_Name: CENTRAL MACHINE
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1710129288
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710129287}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bf0cbcebdea6c97479604d87164f23f0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemigo: {fileID: 5855111973277731191}
+  distancia: 5
+  vista: {fileID: 23984990}
+  agent: {fileID: 5855111973277731195}
+  player: {fileID: 93199168}
+  animator: {fileID: 5855111973277731189}
+  posiciones:
+  - {fileID: 1956886246}
+  - {fileID: 751848943}
+  - {fileID: 1666420528}
+  persiguiendo: 0
+  velocidadPatrulla: 2
+  Player: {fileID: 93199168}
+  distanciaDeAtaque: 1
+  bala: {fileID: 1419460451167081188, guid: e07b6c3e26895fa41bb5b4dc9c60bd8e, type: 3}
+  puntoDeDisparo: {fileID: 145713867}
+  fuerzaDeDisparo: 14
+  tiempoDisponible: 5
+  tiempoDeDisparo: 10
+  probabilidadDeAcierto: 0.5
+--- !u!4 &1710129289
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1710129287}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -1007.76215, y: -619.14764, z: 435.9013}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1746083500 stripped
 Transform:
@@ -3191,7 +3242,6 @@ MonoBehaviour:
   fuerzaDeDisparo: 100
   tiempoDisponible: 5
   tiempoDeDisparo: 0
-  tiempoEntreDisparos: 1.5
   probabilidadDeAcierto: 0.5
 --- !u!1 &1956886245
 GameObject:
@@ -3521,6 +3571,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 1605339211735979328, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 23984991}
+    - targetCorrespondingSourceObject: {fileID: 1605339211735979328, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1611238214}
     - targetCorrespondingSourceObject: {fileID: 2490852099657046667, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       insertIndex: -1
       addedObject: {fileID: 1749964750}
@@ -3610,3 +3663,4 @@ SceneRoots:
   - {fileID: 1014818574}
   - {fileID: 322780102}
   - {fileID: 2075676612}
+  - {fileID: 1710129289}

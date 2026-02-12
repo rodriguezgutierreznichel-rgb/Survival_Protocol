@@ -1,8 +1,11 @@
-﻿using UnityEngine;
+﻿using TMPro;
+using UnityEngine;
 using UnityEngine.AI;
 
 public class ENEMIGODETECTAR : MonoBehaviour
 {
+    //agent.remainingDistance
+
     [SerializeField] GameObject enemigo;
     [SerializeField] float distancia;
     [SerializeField] GameObject vista;
@@ -25,31 +28,42 @@ public class ENEMIGODETECTAR : MonoBehaviour
     
     public float tiempoDisponible = 5f;
     public float tiempoDeDisparo = 0f;
-    float siguienteDisparo = 0f;
-    public float tiempoEntreDisparos = 1.5f;
+    
+   
 
     public float probabilidadDeAcierto = 0.5f;
+
+
 
     void Start()
     {
         persiguiendo = false;
+        agent.SetDestination(posiciones[0].position);
     }
 
     public void Update()
     {
-        //if (persiguiendo == false)
-        //{
-          //  patrullar();
-        //}
+        if (persiguiendo == false)
+        {
+            patrullar();
+        }
 
-      
+        animator.SetFloat("WALKING", agent.velocity.magnitude);
+
+        if (tiempoDisponible < tiempoDeDisparo)
+        {
+
+            tiempoDisponible += Time.deltaTime;
+
+        }
     }
 
     public void patrullar()
     {
-        //animator.SetBool("WALKING", true);
-       // agent.SetDestination(posiciones[0].position);
-        
+
+        agent.SetDestination(posiciones[0].position);
+
+
     }
 
     void OnTriggerStay(Collider other)
@@ -57,6 +71,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
         persiguiendo = true;
        
         Vector3 rotar = player.position - enemigo.transform.position;
+       
         rotar.y = 0;
         enemigo.transform.rotation = Quaternion.LookRotation(rotar);
 
@@ -75,7 +90,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
             {
                 Atacar();
             }
-            else
+            else if (Vector3.Distance(transform.position, player.transform.position) >= distanciaDeAtaque)
             {
                 perseguir();
             }
@@ -87,9 +102,11 @@ public class ENEMIGODETECTAR : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             animator.SetBool("RUN", false);
-            
-            Debug.Log("Te perdí");
+            animator.SetBool("PIU PIU", false);
+           
             persiguiendo = false;
+            agent.SetDestination(posiciones[0].position);
+            animator.SetFloat("WALKING", agent.velocity.magnitude);
         }
     }
 
@@ -99,12 +116,12 @@ public class ENEMIGODETECTAR : MonoBehaviour
         animator.SetBool("RUN", false);
         animator.SetBool("ATTACK", true);
         animator.SetBool("WALKING", false);
-        Debug.Log("Te ataco");
         
 
-        if (Time.time >= siguienteDisparo)
+
+        if (tiempoDisponible >= tiempoDeDisparo)
         {
-            siguienteDisparo = Time.time + tiempoEntreDisparos;
+            tiempoDisponible = 0;
             Disparar();
         }
     }
@@ -129,7 +146,7 @@ public class ENEMIGODETECTAR : MonoBehaviour
     public void perseguir()
     {
         agent.SetDestination(player.position);
-        Debug.Log("Te persigo");
+        
         animator.SetBool("RUN", true);
         animator.SetBool("WALKING", false);
         
