@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 using UnityEngine.AI;
 
 public class EstadoPerseguir : Estados
@@ -21,6 +21,7 @@ public class EstadoPerseguir : Estados
 
     public void Salir(CentralMachine cerebro)
     {
-       
+        cerebro.animator.SetBool("RUN", false);
+        
     }
 }

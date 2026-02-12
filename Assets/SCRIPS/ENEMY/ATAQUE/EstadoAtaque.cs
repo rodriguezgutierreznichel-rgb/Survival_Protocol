@@ -8,30 +8,21 @@ public class EstadoAtaque : Estados
         cerebro.animator.SetBool("RUN", false);
         cerebro.animator.SetBool("ATTACK", true);
         cerebro.animator.SetBool("WALKING", false);
-
-
-
-        if (cerebro.tiempoDisponible >= cerebro.tiempoDeDisparo)
-        {
-            cerebro.tiempoDisponible = 0;
-            GameObject nuevaBala = Object.Instantiate(cerebro.bala, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
-            Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
-
-            Vector3 direccion = cerebro.puntoDeDisparo.forward;
-
-            // 50% de probabilidad
-            if (Random.value > cerebro.probabilidadDeAcierto)
-            {
-                // Falla: desviamos el disparo
-                direccion += new Vector3(1f, 0f, 0f);
-            }
-
-            rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
-        }
     }
 
     public void Ejecutar(CentralMachine cerebro)
     {
+        if (cerebro.tiempoDisponible >= cerebro.tiempoDeDisparo)
+        {
+            cerebro.tiempoDisponible = 0;
+            Disparar(cerebro);
+        }
+        if (cerebro.tiempoDisponible < cerebro.tiempoDeDisparo)
+        {
+
+            cerebro.tiempoDisponible += Time.deltaTime;
+
+        }
 
     }
 
@@ -40,5 +31,25 @@ public class EstadoAtaque : Estados
 
     }
 
-   
+    public void Disparar(CentralMachine cerebro)
+    {
+        GameObject nuevaBala = Object.Instantiate(cerebro.bala, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
+        Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
+
+        Vector3 direccion = (cerebro.player.position - cerebro.puntoDeDisparo.position).normalized;
+
+        // 50% de probabilidad
+        if (Random.value > cerebro.probabilidadDeAcierto)
+        {
+            float desviacion = 0.8f; 
+
+            direccion += new Vector3(
+                Random.Range(-desviacion, desviacion),
+                Random.Range(-desviacion, desviacion),
+                Random.Range(-desviacion, desviacion)
+            );
+        }
+
+        rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
+    }
 }
