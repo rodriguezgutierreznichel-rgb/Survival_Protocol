@@ -9,6 +9,11 @@ public class Lives : MonoBehaviour
     [SerializeField] Animator animatorEnemigo;
     [SerializeField] Animator animatorPlayer;
 
+    [SerializeField] GameObject rastreador;
+
+    [SerializeField] PlayerMove playerMove;
+    [SerializeField] Vista vista;
+
     bool enemigoMuerto = false;
     public void Awake()
     {
@@ -35,6 +40,10 @@ public class Lives : MonoBehaviour
         if (vidas <= 0)
         {
             Debug.Log("Has muerto");
+            animatorPlayer.SetBool("DEAD", true);   
+            rastreador.SetActive(false);
+            playerMove.enabled = false;
+            vista.enabled = false;
         }
     }
 
@@ -48,6 +57,7 @@ public class Lives : MonoBehaviour
             enemigoMuerto = true;
             Debug.Log("Has matado al enemigo");
             animatorEnemigo.SetBool("DEAD", true);
+            rastreador.SetActive(false);
         }
     }
 }
