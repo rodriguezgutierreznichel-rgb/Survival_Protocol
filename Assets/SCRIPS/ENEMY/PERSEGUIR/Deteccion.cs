@@ -20,8 +20,8 @@ public class Deteccion : MonoBehaviour
     void OnTriggerStay(Collider other)
     {
 
-        if (CompareTag("Player"))
-        {
+        if (other.CompareTag("Player"))
+            {
             enemigo.persiguiendo = true;
 
             Vector3 rotar = enemigo.player.position - enemigo.transform.position;
@@ -50,7 +50,7 @@ public class Deteccion : MonoBehaviour
                 else
                 {
                     enemigo.EstadoPerseguir();
-                    Debug.Log("Te veo");
+                   
                 }
 
             }
@@ -58,7 +58,7 @@ public class Deteccion : MonoBehaviour
         else
         {
             enemigo.EstadoPatrullar();
-            Debug.Log("No veo nada");
+            
         }
     }
 
@@ -66,7 +66,7 @@ public class Deteccion : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            Debug.Log("Te perdi");
+            
             enemigo.persiguiendo = false;
             enemigo.EstadoPatrullar();
         }
