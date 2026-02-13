@@ -19,37 +19,46 @@ public class Deteccion : MonoBehaviour
 
     void OnTriggerStay(Collider other)
     {
-        enemigo.persiguiendo = true;
 
-        Vector3 rotar = enemigo.player.position - enemigo.transform.position;
-
-        rotar.y = 0;
-        enemigo.transform.rotation = Quaternion.LookRotation(rotar);
-
-        //if (Vector3.Distance(transform.position, enemigo.player.transform.position) <= enemigo.distanciaDeAtaque)
-
-        Vector3 origin = enemigo.vista.transform.position;
-        Vector3 direction = enemigo.vista.transform.forward * enemigo.distancia;
-        Ray ray = new Ray(origin, direction);
-        RaycastHit hit;
-
-        Debug.DrawRay(origin, direction, Color.red);
-        if (other.CompareTag("Player") && Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Player"))
+        if (CompareTag("Player"))
         {
+            enemigo.persiguiendo = true;
 
-            float distancia = Vector3.Distance(enemigo.transform.position, enemigo.player.position);
-            Debug.Log("La distancia es de: " + distancia);
-            if (distancia <= enemigo.distanciaDeAtaque)
+            Vector3 rotar = enemigo.player.position - enemigo.transform.position;
+
+            rotar.y = 0;
+            enemigo.transform.rotation = Quaternion.LookRotation(rotar);
+
+            //if (Vector3.Distance(transform.position, enemigo.player.transform.position) <= enemigo.distanciaDeAtaque)
+
+            Vector3 origin = enemigo.vista.transform.position;
+            Vector3 direction = enemigo.vista.transform.forward * enemigo.distancia;
+            Ray ray = new Ray(origin, direction);
+            RaycastHit hit;
+
+            Debug.DrawRay(origin, direction, Color.red);
+            if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Player"))
             {
-                enemigo.EstadoAtacar();
-            }
-            else
-            {
-                enemigo.EstadoPerseguir();
-            }
-           
 
+                float distancia = Vector3.Distance(enemigo.transform.position, enemigo.player.position);
+                Debug.Log("La distancia es de: " + distancia);
+                if (distancia <= enemigo.distanciaDeAtaque)
+                {
+                    enemigo.EstadoAtacar();
+                    enemigo.animator.SetFloat("WALKING", 0);
+                }
+                else
+                {
+                    enemigo.EstadoPerseguir();
+                    Debug.Log("Te veo");
+                }
 
+            }
+        }
+        else
+        {
+            enemigo.EstadoPatrullar();
+            Debug.Log("No veo nada");
         }
     }
 

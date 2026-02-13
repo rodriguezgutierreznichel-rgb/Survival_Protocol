@@ -38,7 +38,9 @@ public class EstadoPatrulla : Estados
 
     public void NewPosition(CentralMachine cerebro)
     {
+        Debug.Log("Entro");
         nuevaPosicion = Random.Range(0, cerebro.posiciones.Length);
         cerebro.agent.SetDestination(cerebro.posiciones[nuevaPosicion].position);
+        Debug.Log("esta en " + cerebro.posiciones[nuevaPosicion].position);
     }
 }

@@ -7,7 +7,7 @@ public class EstadoAtaque : Estados
         cerebro.agent.isStopped = true;
         cerebro.animator.SetBool("RUN", false);
         cerebro.animator.SetBool("ATTACK", true);
-        cerebro.animator.SetBool("WALKING", false);
+       
     }
 
     public void Ejecutar(CentralMachine cerebro)
