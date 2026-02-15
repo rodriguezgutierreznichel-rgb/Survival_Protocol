@@ -7,14 +7,19 @@ public class Lanzador : MonoBehaviour
 {
     private ControllersGame controles;
 
+    //Punto donde saldra la bala
     [SerializeField] Transform puntoDisparo;
 
+    //Fuerza de disparo
     [SerializeField] float shootingForce = 20f;
 
+    //Animaciones
     [SerializeField] Animator animator;
+
+    //Condiciones para disparar
     public float tiempoDisponible = 5f;
     public float tiempoDeDisparo = 0f;
-    private bool estaApuntando = false;
+   
 
     private void Awake()
     {
@@ -49,16 +54,14 @@ public class Lanzador : MonoBehaviour
 
                 if (proyectil != null)
                 {
-                    proyectil.transform.position = puntoDisparo.position;
-                    proyectil.transform.rotation = puntoDisparo.rotation;
+                  proyectil.transform.position = puntoDisparo.position;
+                  proyectil.transform.rotation = puntoDisparo.rotation;
 
-                    proyectil.SetActive(true);
+                  proyectil.SetActive(true);
 
-                    Rigidbody rb = proyectil.GetComponent<Rigidbody>();
-                    rb.linearVelocity = Vector3.zero;
-                    rb.angularVelocity = Vector3.zero;
+                  Rigidbody rb = proyectil.GetComponent<Rigidbody>();
 
-                    rb.AddForce(puntoDisparo.forward * shootingForce, ForceMode.Impulse);
+                  rb.AddForce(Camera.main.transform.forward * shootingForce);
                 }
             }
        
