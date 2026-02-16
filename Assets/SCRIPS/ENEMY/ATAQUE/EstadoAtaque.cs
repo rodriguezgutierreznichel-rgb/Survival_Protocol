@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 public class EstadoAtaque : Estados
 {
@@ -33,15 +33,26 @@ public class EstadoAtaque : Estados
 
     public void Disparar(CentralMachine cerebro)
     {
-        GameObject nuevaBala = Object.Instantiate(cerebro.bala, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
+        GameObject nuevaBala = CanPool.instance.PopEnemigo();
+
+        if (nuevaBala == null)
+        {
+            Debug.Log("No puedo disparar");
+            return;
+        }
+
+        nuevaBala.transform.position = cerebro.puntoDeDisparo.position;
+        nuevaBala.transform.rotation = cerebro.puntoDeDisparo.rotation;
+        nuevaBala.SetActive(true);
+        
+
         Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
 
         Vector3 direccion = (cerebro.player.position - cerebro.puntoDeDisparo.position).normalized;
 
-        // 50% de probabilidad
         if (Random.value > cerebro.probabilidadDeAcierto)
         {
-            float desviacion = 0.8f; 
+            float desviacion = 0.8f;
 
             direccion += new Vector3(
                 Random.Range(-desviacion, desviacion),

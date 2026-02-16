@@ -1046,7 +1046,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   balas: {fileID: 4689725498328822275, guid: 6f5c944eeae89ea4d853a1dd0061b32b, type: 3}
-  maxElements: 7
+  balaEnemigo: {fileID: 1419460451167081188, guid: e07b6c3e26895fa41bb5b4dc9c60bd8e, type: 3}
+  maxElements: 1
+  maxElementsEnemigo: 2
+  tiempoRecargaEnemigo: 20
+  temporizadorRecarga: 0
 --- !u!4 &635430246
 Transform:
   m_ObjectHideFlags: 0
@@ -3486,7 +3490,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1749964750
 Transform:
   m_ObjectHideFlags: 0
@@ -4174,7 +4178,7 @@ MonoBehaviour:
   distancia: 10
   enemigo: {fileID: 5855111973277731191}
   tiempoDisponible: 5
-  tiempoDeDisparo: 5
+  tiempoDeDisparo: 8
   bala: {fileID: 1419460451167081188, guid: e07b6c3e26895fa41bb5b4dc9c60bd8e, type: 3}
   puntoDeDisparo: {fileID: 145713867}
   fuerzaDeDisparo: 5

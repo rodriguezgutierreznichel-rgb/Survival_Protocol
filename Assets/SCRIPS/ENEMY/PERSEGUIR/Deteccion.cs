@@ -41,7 +41,7 @@ public class Deteccion : MonoBehaviour
             {
 
                 float distancia = Vector3.Distance(enemigo.transform.position, enemigo.player.position);
-                Debug.Log("La distancia es de: " + distancia);
+               
                 if (distancia <= enemigo.distanciaDeAtaque)
                 {
                     enemigo.EstadoAtacar();

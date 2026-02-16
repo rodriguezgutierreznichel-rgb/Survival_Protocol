@@ -6,9 +6,17 @@ public class CanPool : MonoBehaviour
     public static CanPool instance;
 
     [SerializeField] GameObject balas;
+    [SerializeField] GameObject balaEnemigo;
     [SerializeField] int maxElements;
+    [SerializeField] int maxElementsEnemigo;
+
+    [SerializeField] float tiempoRecargaEnemigo = 3f;
+    
+
+    public float temporizadorRecarga;
 
     Stack<GameObject> pool = new Stack<GameObject>();
+    Stack<GameObject> poolEnemigo = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -27,18 +35,37 @@ public class CanPool : MonoBehaviour
             proyectil.SetActive(false);
             pool.Push(proyectil);
         }
+
+        for (int i = 0; i < maxElementsEnemigo; i++)
+        {
+            GameObject proyectilEnemigo = Instantiate(balaEnemigo);
+            proyectilEnemigo.SetActive(false);
+            poolEnemigo.Push(proyectilEnemigo);
+        }
     }
 
     // Update is called once per frame
     void Update()
     {
-        
+        if (maxElementsEnemigo <= 0)
+        {
+            temporizadorRecarga += Time.deltaTime;
+
+            if (temporizadorRecarga >= tiempoRecargaEnemigo)
+            {
+                
+                maxElementsEnemigo++;
+                temporizadorRecarga = 0;
+                Debug.Log("Enemigo recargó 1 bala");
+            }
+        }
     }
 
     public GameObject PopObject()
     {
         if (maxElements <= 0)
         {
+            
             Debug.Log("Balas insuficientes");
             return null;
         }
@@ -58,13 +85,45 @@ public class CanPool : MonoBehaviour
         return objectToReturn;
     }
 
+    public GameObject PopEnemigo()
+    {
+        GameObject objectToReturn = null;
+
+        if (maxElementsEnemigo <= 0)
+        {
+            Debug.Log("Balas insuficientes");
+            return null;
+        }
+
+        maxElementsEnemigo--;
+       
+
+        if (poolEnemigo.Count != 0)
+        {
+            objectToReturn = poolEnemigo.Pop();
+        }
+        else
+        {
+            objectToReturn = Instantiate(balaEnemigo);
+            objectToReturn.SetActive(false);
+        }
+
+        return objectToReturn;
+    }
+
     public void PushObject(GameObject obj)
     {
         obj.SetActive(false);
         pool.Push(obj);
     }
 
-    
+    public void PushEnemigo(GameObject obj)
+    {
+        obj.SetActive(false);
+        poolEnemigo.Push(obj);
+    }
+
+
     public void Recargar(int municion)
     {
         maxElements = maxElements + municion;
