@@ -73,6 +73,7 @@ public class CentralMachine : MonoBehaviour
 
     public void EstadoAtacar()
     {
-        CambiarEstado(new EstadoAtaque());
+        //CambiarEstado(new EstadoAtaque());
+        CambiarEstado(new ESTADOATAQUE1());
     }
 }
