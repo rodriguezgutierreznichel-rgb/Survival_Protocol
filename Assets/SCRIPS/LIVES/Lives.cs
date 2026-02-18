@@ -3,6 +3,7 @@ using UnityEngine.AI;
 
 public class Lives : MonoBehaviour
 {
+    public CentralMachine enemigo;
     public static Lives instance;
     public int vidas = 3;
     public int vidasEnemigo = 3;
@@ -14,8 +15,9 @@ public class Lives : MonoBehaviour
 
     [SerializeField] PlayerMove playerMove;
     [SerializeField] Vista vista;
+    [SerializeField] VIEW view;
 
-    [SerializeField] GameObject enemigo;
+    
     [SerializeField] Transform muerteEnemigo;
     [SerializeField] NavMeshAgent agent;
 
@@ -49,6 +51,10 @@ public class Lives : MonoBehaviour
             rastreador.SetActive(false);
             playerMove.enabled = false;
             vista.enabled = false;
+            view.enabled = false;
+            agent.isStopped = true;
+
+            enemigo.EstadoPatrullar();
         }
     }
 
@@ -63,7 +69,7 @@ public class Lives : MonoBehaviour
             Debug.Log("Has matado al enemigo");
             animatorEnemigo.SetBool("DEAD", true);
             rastreador.SetActive(false);
-            agent.SetDestination(muerteEnemigo.transform.position);
+            agent.isStopped = true;
         }
     }
 }

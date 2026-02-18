@@ -89,6 +89,15 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""processors"": """",
                     ""interactions"": """",
                     ""initialStateCheck"": false
+                },
+                {
+                    ""name"": ""VIEW"",
+                    ""type"": ""Value"",
+                    ""id"": ""c2077444-db32-4e7e-be47-a3448f452636"",
+                    ""expectedControlType"": ""Vector2"",
+                    ""processors"": """",
+                    ""interactions"": """",
+                    ""initialStateCheck"": true
                 }
             ],
             ""bindings"": [
@@ -245,6 +254,28 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
                     ""action"": ""RIGHT"",
                     ""isComposite"": false,
                     ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""0da884eb-8ce6-44a9-8595-8f26d6b0a3ca"",
+                    ""path"": ""<Gamepad>/rightStick"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VIEW"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
+                },
+                {
+                    ""name"": """",
+                    ""id"": ""802afb20-8c54-48c7-bb1f-fcd3ef764a4e"",
+                    ""path"": ""<Mouse>/delta"",
+                    ""interactions"": """",
+                    ""processors"": """",
+                    ""groups"": """",
+                    ""action"": ""VIEW"",
+                    ""isComposite"": false,
+                    ""isPartOfComposite"": false
                 }
             ]
         }
@@ -260,6 +291,7 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         m_PlayerControllers_BACKWARDS = m_PlayerControllers.FindAction("BACKWARDS", throwIfNotFound: true);
         m_PlayerControllers_LEFT = m_PlayerControllers.FindAction("LEFT", throwIfNotFound: true);
         m_PlayerControllers_RIGHT = m_PlayerControllers.FindAction("RIGHT", throwIfNotFound: true);
+        m_PlayerControllers_VIEW = m_PlayerControllers.FindAction("VIEW", throwIfNotFound: true);
     }
 
     ~@ControllersGame()
@@ -333,6 +365,7 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
     private readonly InputAction m_PlayerControllers_BACKWARDS;
     private readonly InputAction m_PlayerControllers_LEFT;
     private readonly InputAction m_PlayerControllers_RIGHT;
+    private readonly InputAction m_PlayerControllers_VIEW;
     public struct PlayerControllersActions
     {
         private @ControllersGame m_Wrapper;
@@ -344,6 +377,7 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         public InputAction @BACKWARDS => m_Wrapper.m_PlayerControllers_BACKWARDS;
         public InputAction @LEFT => m_Wrapper.m_PlayerControllers_LEFT;
         public InputAction @RIGHT => m_Wrapper.m_PlayerControllers_RIGHT;
+        public InputAction @VIEW => m_Wrapper.m_PlayerControllers_VIEW;
         public InputActionMap Get() { return m_Wrapper.m_PlayerControllers; }
         public void Enable() { Get().Enable(); }
         public void Disable() { Get().Disable(); }
@@ -374,6 +408,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             @RIGHT.started += instance.OnRIGHT;
             @RIGHT.performed += instance.OnRIGHT;
             @RIGHT.canceled += instance.OnRIGHT;
+            @VIEW.started += instance.OnVIEW;
+            @VIEW.performed += instance.OnVIEW;
+            @VIEW.canceled += instance.OnVIEW;
         }
 
         private void UnregisterCallbacks(IPlayerControllersActions instance)
@@ -399,6 +436,9 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
             @RIGHT.started -= instance.OnRIGHT;
             @RIGHT.performed -= instance.OnRIGHT;
             @RIGHT.canceled -= instance.OnRIGHT;
+            @VIEW.started -= instance.OnVIEW;
+            @VIEW.performed -= instance.OnVIEW;
+            @VIEW.canceled -= instance.OnVIEW;
         }
 
         public void RemoveCallbacks(IPlayerControllersActions instance)
@@ -425,5 +465,6 @@ public partial class @ControllersGame: IInputActionCollection2, IDisposable
         void OnBACKWARDS(InputAction.CallbackContext context);
         void OnLEFT(InputAction.CallbackContext context);
         void OnRIGHT(InputAction.CallbackContext context);
+        void OnVIEW(InputAction.CallbackContext context);
     }
 }
