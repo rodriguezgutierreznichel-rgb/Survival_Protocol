@@ -3,6 +3,7 @@ using UnityEngine.Rendering;
 
 public class EstadoPatrulla : Estados
 {
+    //Posiciones y velocidad
     private int posicionAntigua;
     private int nuevaPosicion;
     public float velocidad;

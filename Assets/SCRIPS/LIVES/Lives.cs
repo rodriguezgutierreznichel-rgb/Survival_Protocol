@@ -4,24 +4,31 @@ using UnityEngine.AI;
 public class Lives : MonoBehaviour
 {
     public CentralMachine enemigo;
+
+    //Vidas
     public static Lives instance;
     public int vidas = 3;
     public int vidasEnemigo = 3;
 
-    [SerializeField] Animator animatorEnemigo;
-    [SerializeField] Animator animatorPlayer;
-
-    [SerializeField] GameObject rastreador;
-
+    //Player
     [SerializeField] PlayerMove playerMove;
     [SerializeField] Vista vista;
     [SerializeField] VIEW view;
+    [SerializeField] Animator animatorPlayer;
 
-    
+    //Camara y sus animaciones
+    [SerializeField] GameObject camara;
+    [SerializeField] LeanTweenType tipoDeCurvaDelBoton;
+    [SerializeField] float velocidadDeAnimacion = 0f;
+    [SerializeField] Vector3 posicion = new Vector3 (38f, 0f, 0f);
+
+    //Enemigo
     [SerializeField] Transform muerteEnemigo;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] Animator animatorEnemigo;
+    [SerializeField] GameObject rastreador;
 
-    bool enemigoMuerto = false;
+    
     public void Awake()
     {
         if (instance == null)
@@ -46,13 +53,24 @@ public class Lives : MonoBehaviour
 
         if (vidas <= 0)
         {
+           
+
             Debug.Log("Has muerto");
-            animatorPlayer.SetBool("DEAD", true);   
+            animatorPlayer.SetBool("DEAD", true);
+            animatorPlayer.SetBool("RUN", false);
+            animatorPlayer.SetBool("WALKING", false);
+            animatorPlayer.SetBool("BACKWARDS", false);
+            animatorPlayer.SetBool("AIM", false);
+            animatorPlayer.SetBool("LEFT", false);
+            animatorPlayer.SetBool("RIGHT", false);
             rastreador.SetActive(false);
             playerMove.enabled = false;
-            vista.enabled = false;
+
+            
             view.enabled = false;
             agent.isStopped = true;
+
+            LeanTween.rotate(camara, posicion, velocidadDeAnimacion).setEase(tipoDeCurvaDelBoton);
 
             enemigo.EstadoPatrullar();
         }
@@ -65,7 +83,7 @@ public class Lives : MonoBehaviour
 
         if (vidasEnemigo <= 0)
         {
-            enemigoMuerto = true;
+            
             Debug.Log("Has matado al enemigo");
             animatorEnemigo.SetBool("DEAD", true);
             rastreador.SetActive(false);

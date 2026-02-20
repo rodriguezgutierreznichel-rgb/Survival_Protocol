@@ -2,14 +2,18 @@ using UnityEngine;
 
 public class VIEW : MonoBehaviour
 {
-     public float sensibilidad = 200f;
+    //Sensibilidad y rotacion para mover la camara con el raton
+    public float sensibilidad = 200f;
+    float rotY = 0f;
 
+
+    //Controles para mover la camara con el mando
     private ControllersGame controls;
+
+    //Valores de entrada del movimiento de la mirada (mando o raton)
     private Vector2 lookInput;
 
    
-
-    float rotY = 0f;
 
     void Awake()
     {
@@ -31,16 +35,9 @@ public class VIEW : MonoBehaviour
 
     void Update()
     {
-       
-
-
         float mouseX = lookInput.x * sensibilidad * Time.deltaTime;
         
-
-       
         rotY += mouseX;
-
-        
 
         transform.localRotation = Quaternion.Euler(0f, rotY, 0f);
     }

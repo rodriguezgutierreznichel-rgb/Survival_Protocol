@@ -13,7 +13,7 @@ GameObject:
   - component: {fileID: 4794769673254181502}
   - component: {fileID: 4957443300427136995}
   - component: {fileID: -5430152889950197770}
-  - component: {fileID: -4386333769513363534}
+  - component: {fileID: 1369287651812360852}
   m_Layer: 0
   m_Name: Cube (3)
   m_TagString: Untagged
@@ -137,7 +137,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &-4386333769513363534
+--- !u!114 &1369287651812360852
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -150,4 +150,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   timer: 0
-  tiempoDeDesaparicion: 5
+  tiempoDeDesaparicion: 20

@@ -30,9 +30,6 @@ public class CentralMachine : MonoBehaviour
     //Animaciones
     public Animator animator;
 
-
-
-
     public void Start()
     {
         CambiarEstado(new EstadoPatrulla());
