@@ -14,6 +14,11 @@ public class Bala : MonoBehaviour
 
     }
 
+    private void OnEnable()
+    {
+        timer = 0f; // Reinicia el cronómetro cada vez que la bala sale del pool
+    }
+
     // Update is called once per frame
     void Update()
     {
@@ -22,8 +27,8 @@ public class Bala : MonoBehaviour
 
         if (timer >= tiempoDeDesaparicion)
         {
-
-           Destroy(gameObject);
+            // EN LUGAR DE DESTROY: Devolver a la pool
+            RegresarAPool();
         }
     }
 
@@ -33,7 +38,21 @@ public class Bala : MonoBehaviour
         {
             Lives.instance.PerderVidasEnemigo(1);
             Debug.Log("Chocó con el enemigo");
-            Destroy(gameObject);
+
+            // EN LUGAR DE DESTROY: Devolver a la pool
+            RegresarAPool();
         }
+    }
+
+    private void RegresarAPool()
+    {
+        Rigidbody rb = GetComponent<Rigidbody>();
+        if (rb != null)
+        {
+            rb.linearVelocity = Vector3.zero;
+            rb.angularVelocity = Vector3.zero;
+        }
+        CANPOOL1.instance.PushObject(this.gameObject);
+        Debug.Log("Volvio a la piscina");
     }
 }
