@@ -4239,7 +4239,7 @@ MonoBehaviour:
   puntoDeDisparo: {fileID: 145713867}
   fuerzaDeDisparo: 5
   distanciaDeAtaque: 3
-  probabilidadDeAcierto: 0.1
+  probabilidadDeAcierto: 0.5
   animator: {fileID: 5855111973277731189}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

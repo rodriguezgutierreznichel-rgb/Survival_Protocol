@@ -5,6 +5,7 @@ public class EstadoPatrulla : Estados
 {
     private int posicionAntigua;
     private int nuevaPosicion;
+    public float velocidad;
 
     public void Entrar(CentralMachine cerebro)
     {
@@ -12,6 +13,7 @@ public class EstadoPatrulla : Estados
         cerebro.persiguiendo = false;
         cerebro.animator.SetBool("RUN", false);
         cerebro.animator.SetBool("ATTACK", false);
+        cerebro.agent.speed = 2f;
         NewPosition(cerebro);
         
     }
@@ -38,9 +40,9 @@ public class EstadoPatrulla : Estados
 
     public void NewPosition(CentralMachine cerebro)
     {
-        Debug.Log("Entro");
+        //Debug.Log("Entro");
         nuevaPosicion = Random.Range(0, cerebro.posiciones.Length);
         cerebro.agent.SetDestination(cerebro.posiciones[nuevaPosicion].position);
-        Debug.Log("esta en " + cerebro.posiciones[nuevaPosicion].position);
+        //Debug.Log("esta en " + cerebro.posiciones[nuevaPosicion].position);
     }
 }

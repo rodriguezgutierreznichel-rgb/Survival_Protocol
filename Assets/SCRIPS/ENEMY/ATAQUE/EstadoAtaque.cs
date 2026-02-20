@@ -52,15 +52,22 @@ public class EstadoAtaque : Estados
 
         if (Random.value > cerebro.probabilidadDeAcierto)
         {
+            Debug.Log("Falla");
             float desviacion = 0.8f;
 
-            direccion += new Vector3(
-                Random.Range(-desviacion, desviacion),
-                Random.Range(-desviacion, desviacion),
-                Random.Range(-desviacion, desviacion)
-            );
+            direccion.x += Random.Range(-desviacion, desviacion);
+
+            
+            direccion.y += Random.Range(-desviacion, desviacion);
+
+            
+            direccion.z += Random.Range(-desviacion, desviacion);
+        }
+        else
+        {
+            Debug.Log("Acierta");
         }
 
-        rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
+            rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
     }
 }
