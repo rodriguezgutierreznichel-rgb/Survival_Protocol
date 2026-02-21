@@ -6,15 +6,13 @@ public class PlayerMove : MonoBehaviour
 {
     private ControllersGame controller;
 
+    //Velocidades
     public float speedWalking = 5f;
     public float speedRun = 10f;
 
+    //Animaciones
     [SerializeField]
     Animator animator;
-
-    
-
-   
 
     private void Awake()
     {

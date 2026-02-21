@@ -54,8 +54,6 @@ public class Lives : MonoBehaviour
 
         if (vidas <= 0)
         {
-           
-
             Debug.Log("Has muerto");
             animatorPlayer.SetBool("DEAD", true);
             animatorPlayer.SetBool("RUN", false);

@@ -1641,8 +1641,8 @@ MonoBehaviour:
   balaEnemigo: {fileID: 1419460451167081188, guid: e07b6c3e26895fa41bb5b4dc9c60bd8e, type: 3}
   maxElements: 1
   maxElementsEnemigo: 2
-  tiempoRecargaEnemigo: 1
-  tiempoRecargaPlayer: 1
+  tiempoRecargaEnemigo: 6
+  tiempoRecargaPlayer: 6
   temporizadorRecargaPlayer: 0
   temporizadorRecargaEnemigo: 0
 --- !u!4 &972594707
@@ -4263,7 +4263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_TagString
