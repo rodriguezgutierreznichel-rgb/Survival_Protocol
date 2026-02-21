@@ -7,7 +7,7 @@ public class CanPool : MonoBehaviour
 
     [SerializeField] GameObject balas;
     [SerializeField] GameObject balaEnemigo;
-    [SerializeField] int maxElements;
+    public int maxElements;
     [SerializeField] int maxElementsEnemigo;
 
     [SerializeField] float tiempoRecargaEnemigo = 3f;
@@ -47,17 +47,21 @@ public class CanPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (maxElementsEnemigo <= 0)
+        if (maxElementsEnemigo <= 0 && Lives.instance.vidasEnemigo > 0)
         {
             temporizadorRecarga += Time.deltaTime;
 
             if (temporizadorRecarga >= tiempoRecargaEnemigo)
             {
-                
                 maxElementsEnemigo++;
                 temporizadorRecarga = 0;
                 Debug.Log("Enemigo recargó 1 bala");
             }
+        }
+        else if (Lives.instance.vidasEnemigo <= 0)
+        {
+            // Opcional: Resetear el temporizador si el enemigo muere
+            temporizadorRecarga = 0;
         }
     }
 
@@ -130,5 +134,7 @@ public class CanPool : MonoBehaviour
         Debug.Log("valas actuales " + maxElements);
 
     }
+
+   
 }
 

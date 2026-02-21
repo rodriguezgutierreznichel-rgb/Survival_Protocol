@@ -27,6 +27,7 @@ public class Lives : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animatorEnemigo;
     [SerializeField] GameObject rastreador;
+    
 
     
     public void Awake()
@@ -88,6 +89,11 @@ public class Lives : MonoBehaviour
             animatorEnemigo.SetBool("DEAD", true);
             rastreador.SetActive(false);
             agent.isStopped = true;
+
+            if (PoolVidas.instance != null)
+            {
+                PoolVidas.instance.SoltarVida(animatorEnemigo.transform.position + Vector3.up);
+            }
         }
     }
 }

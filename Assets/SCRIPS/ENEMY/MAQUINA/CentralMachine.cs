@@ -26,6 +26,7 @@ public class CentralMachine : MonoBehaviour
     public float fuerzaDeDisparo = 100f;
     public float distanciaDeAtaque = 5f;
     public float probabilidadDeAcierto = 0.5f;
+    
 
     //Animaciones
     public Animator animator;

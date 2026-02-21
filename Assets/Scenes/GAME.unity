@@ -525,7 +525,6 @@ GameObject:
   m_Component:
   - component: {fileID: 221587669}
   - component: {fileID: 221587668}
-  - component: {fileID: 221587670}
   m_Layer: 0
   m_Name: Lanzador
   m_TagString: Untagged
@@ -540,7 +539,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 221587667}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 17ab587795a18634ba72f822a65f4c98, type: 3}
   m_Name: 
@@ -565,23 +564,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1146152852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &221587670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 221587667}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bc88c68384975134f8d70cf97bd891db, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  puntoDisparo: {fileID: 1763503045}
-  shootingForce: 20
-  animator: {fileID: 93199164}
-  tiempoDisponible: 5
-  tiempoDeDisparo: 1
 --- !u!1 &262253071
 GameObject:
   m_ObjectHideFlags: 0
@@ -1057,7 +1039,6 @@ GameObject:
   m_Component:
   - component: {fileID: 635430246}
   - component: {fileID: 635430245}
-  - component: {fileID: 635430247}
   m_Layer: 0
   m_Name: CanPool
   m_TagString: Untagged
@@ -1072,7 +1053,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 635430244}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b29cfd2294121b74c8acf3651d949708, type: 3}
   m_Name: 
@@ -1098,26 +1079,6 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1146152852}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &635430247
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 635430244}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 15adb9d898c9fa04986edc70ebc86925, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  balas: {fileID: 4689725498328822275, guid: 6f5c944eeae89ea4d853a1dd0061b32b, type: 3}
-  balaEnemigo: {fileID: 1419460451167081188, guid: e07b6c3e26895fa41bb5b4dc9c60bd8e, type: 3}
-  maxElements: 1
-  maxElementsEnemigo: 2
-  tiempoRecargaEnemigo: 1
-  tiempoRecargaPlayer: 1
-  temporizadorRecargaPlayer: 0
-  temporizadorRecargaEnemigo: 0
 --- !u!1 &689172443
 GameObject:
   m_ObjectHideFlags: 0
@@ -4031,6 +3992,52 @@ Transform:
   m_Children: []
   m_Father: {fileID: 1387029400}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1975413435
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1975413437}
+  - component: {fileID: 1975413436}
+  m_Layer: 0
+  m_Name: PoolVidas
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 0
+--- !u!114 &1975413436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975413435}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e22fb2edbb468484ab5d39e91328015a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cuboVidaPrefab: {fileID: 4689725498328822275, guid: ad9b27d821d2cc5429dc4eb250087bd7, type: 3}
+  cantidadInicial: 5
+--- !u!4 &1975413437
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1975413435}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -12.2573, y: 8.157252, z: -6.9914694}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1987108798 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6791860291010798096, guid: 48cd3b5b38dcabb49955d972512eb6a8, type: 3}
@@ -4256,7 +4263,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_TagString
@@ -4403,3 +4410,4 @@ SceneRoots:
   - {fileID: 1243041856}
   - {fileID: 689172448}
   - {fileID: 1146152852}
+  - {fileID: 1975413437}

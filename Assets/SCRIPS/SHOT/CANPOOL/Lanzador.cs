@@ -84,9 +84,13 @@ public class Lanzador : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && CanPool.instance.maxElements < 6)
         {
             CanPool.instance.Recargar(+3);
+        }
+        else if (CanPool.instance.maxElements >= 6)
+        {
+            Debug.Log("Almacenamiento lleno");
         }
 
         if (tiempoDisponible < tiempoDeDisparo)

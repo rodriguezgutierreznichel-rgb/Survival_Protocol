@@ -2,6 +2,7 @@
 
 public class EstadoAtaque : Estados
 {
+    
     public void Entrar(CentralMachine cerebro)
     {
         cerebro.agent.isStopped = true;
@@ -28,7 +29,7 @@ public class EstadoAtaque : Estados
 
     public void Salir(CentralMachine cerebro)
     {
-
+        
     }
 
     public void Disparar(CentralMachine cerebro)
