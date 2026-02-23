@@ -82,7 +82,7 @@ public class Lives : MonoBehaviour
 
         if (vidasEnemigo <= 0)
         {
-            
+            Puntos.instance.RecibirPuntos(1);
             Debug.Log("Has matado al enemigo");
             animatorEnemigo.SetBool("DEAD", true);
             rastreador.SetActive(false);
