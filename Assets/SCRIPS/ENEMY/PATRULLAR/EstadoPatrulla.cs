@@ -26,6 +26,7 @@ public class EstadoPatrulla : Estados
         // Si llegamos al destino
         if (!cerebro.agent.pathPending && cerebro.agent.remainingDistance <= cerebro.agent.stoppingDistance)
         {
+            Debug.Log("LLegamos al destino");
             // Guardamos el destino actual como antigua
             posicionAntigua = nuevaPosicion;
 
