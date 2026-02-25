@@ -18,6 +18,11 @@ public class LANZADOR1 : MonoBehaviour
     public float tiempoDisponible = 5f;
     public float tiempoDeDisparo = 0f;
 
+    //Efecto de disparo
+    [SerializeField]
+    GameObject efecto;                   
+
+
 
     private void Awake()
     {
@@ -48,6 +53,8 @@ public class LANZADOR1 : MonoBehaviour
         {
             tiempoDisponible = 0;
 
+            
+
             GameObject proyectil = CANPOOL1.instance.PopObject();
 
             if (proyectil != null)
@@ -56,6 +63,9 @@ public class LANZADOR1 : MonoBehaviour
                 proyectil.transform.rotation = puntoDisparo.rotation;
 
                 proyectil.SetActive(true);
+
+                GameObject flash = Instantiate(efecto, puntoDisparo.position, puntoDisparo.rotation);
+                Destroy(flash, 0.5f);
 
                 Rigidbody rb = proyectil.GetComponent<Rigidbody>();
 

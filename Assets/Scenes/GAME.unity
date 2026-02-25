@@ -1140,7 +1140,7 @@ Camera:
     y: 0
     width: 1
     height: 1
-  near clip plane: 0.3
+  near clip plane: 0.1
   far clip plane: 1000
   field of view: 60.000004
   orthographic: 0
@@ -2750,12 +2750,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 15adb9d898c9fa04986edc70ebc86925, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  balas: {fileID: 5642858144603959214, guid: e4fdc43cc7c39fb48960032a89602f32, type: 3}
-  balaEnemigo: {fileID: 8585542772986347399, guid: f1c24dc36b65de24ab16093f518a7397, type: 3}
+  balas: {fileID: 4689725498328822275, guid: 6f5c944eeae89ea4d853a1dd0061b32b, type: 3}
+  balaEnemigo: {fileID: 4689725498328822275, guid: 183909e00d543574693c8e6897b0dfff, type: 3}
   maxElements: 1
   maxElementsEnemigo: 2
-  tiempoRecargaEnemigo: 6
-  tiempoRecargaPlayer: 6
+  tiempoRecargaEnemigo: 1
+  tiempoRecargaPlayer: 1
   temporizadorRecargaPlayer: 0
   temporizadorRecargaEnemigo: 0
 --- !u!4 &972594707
@@ -2914,7 +2914,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   enemigo: {fileID: 5855111973277731201}
-  vidas: 20
+  vidas: 1
   vidasEnemigo: 3
   playerMove: {fileID: 93199166}
   vista: {fileID: 93199175}
@@ -2923,7 +2923,8 @@ MonoBehaviour:
   camara: {fileID: 330585543}
   tipoDeCurvaDelBoton: 25
   velocidadDeAnimacion: 1
-  posicion: {x: 38, y: 0, z: 0}
+  posicionY: 4
+  rotacion: {x: 84, y: 0, z: 0}
   muerteEnemigo: {fileID: 1611238214}
   agent: {fileID: 5855111973277731195}
   animatorEnemigo: {fileID: 5855111973277731189}
@@ -3716,6 +3717,7 @@ MonoBehaviour:
   animator: {fileID: 93199164}
   tiempoDisponible: 5
   tiempoDeDisparo: 1
+  efecto: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
 --- !u!4 &1243041856
 Transform:
   m_ObjectHideFlags: 0
@@ -4853,10 +4855,10 @@ PrefabInstance:
     m_AddedGameObjects:
     - targetCorrespondingSourceObject: {fileID: 583091413269648081, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 1383766103}
+      addedObject: {fileID: 936083246}
     - targetCorrespondingSourceObject: {fileID: 583091413269648081, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 936083246}
+      addedObject: {fileID: 1383766103}
     - targetCorrespondingSourceObject: {fileID: 7022439340490976637, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 317926648}
@@ -4902,7 +4904,7 @@ Transform:
   m_GameObject: {fileID: 1383766102}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -9.234377, y: 0.9212148, z: -1.1886399}
+  m_LocalPosition: {x: -9.234377, y: 0.92121476, z: -1.1886396}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -6767,7 +6769,7 @@ MonoBehaviour:
   puntoDeDisparo: {fileID: 145713867}
   fuerzaDeDisparo: 20
   distanciaDeAtaque: 3
-  probabilidadDeAcierto: 0.5
+  probabilidadDeAcierto: 1
   animator: {fileID: 5855111973277731189}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:

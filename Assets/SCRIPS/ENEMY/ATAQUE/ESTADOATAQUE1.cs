@@ -56,6 +56,7 @@ public class ESTADOATAQUE1 : Estados
         else
         {
             Debug.Log("Acierta");
+            
         }
 
         rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);

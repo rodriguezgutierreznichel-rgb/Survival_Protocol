@@ -20,7 +20,8 @@ public class Lives : MonoBehaviour
     [SerializeField] GameObject camara;
     [SerializeField] LeanTweenType tipoDeCurvaDelBoton;
     [SerializeField] float velocidadDeAnimacion = 0f;
-    [SerializeField] Vector3 posicion = new Vector3 (38f, 0f, 0f);
+    [SerializeField] float posicionY = 20f;
+    [SerializeField] Vector3 rotacion = new Vector3(38f, 0f, 0f);
 
     //Enemigo
     [SerializeField] Transform muerteEnemigo;
@@ -69,7 +70,8 @@ public class Lives : MonoBehaviour
             view.enabled = false;
             agent.isStopped = true;
 
-            LeanTween.rotate(camara, posicion, velocidadDeAnimacion).setEase(tipoDeCurvaDelBoton);
+            LeanTween.rotate(camara, rotacion, velocidadDeAnimacion).setEase(tipoDeCurvaDelBoton);
+            LeanTween.moveY(camara, posicionY, velocidadDeAnimacion).setEase(tipoDeCurvaDelBoton);
 
             enemigo.EstadoPatrullar();
         }
