@@ -59,6 +59,8 @@ public class ESTADOATAQUE1 : Estados
             
         }
 
+        GameObject flash = Object.Instantiate(cerebro.efecto, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
+        Object.Destroy(flash, 0.5f);
         rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
     }
 }

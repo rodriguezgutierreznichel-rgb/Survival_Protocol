@@ -31,6 +31,9 @@ public class CentralMachine : MonoBehaviour
     //Animaciones
     public Animator animator;
 
+    //Efecto de disparo
+    public GameObject efecto;
+
     public void Start()
     {
         CambiarEstado(new EstadoPatrulla());
