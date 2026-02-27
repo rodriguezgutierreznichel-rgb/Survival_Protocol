@@ -2682,43 +2682,12 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 2333246135476635899, guid: bae3b6da9f558a04994badd5424cbd6f, type: 3}
       insertIndex: -1
       addedObject: {fileID: 701688946}
-    - targetCorrespondingSourceObject: {fileID: 2333246135476635899, guid: bae3b6da9f558a04994badd5424cbd6f, type: 3}
-      insertIndex: -1
-      addedObject: {fileID: 701688945}
   m_SourcePrefab: {fileID: 100100000, guid: bae3b6da9f558a04994badd5424cbd6f, type: 3}
 --- !u!1 &701688944 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 2333246135476635899, guid: bae3b6da9f558a04994badd5424cbd6f, type: 3}
   m_PrefabInstance: {fileID: 701688943}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &701688945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 701688944}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bf0cbcebdea6c97479604d87164f23f0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  agent: {fileID: 701688947}
-  posiciones: []
-  persiguiendo: 0
-  player: {fileID: 0}
-  vista: {fileID: 0}
-  distancia: 0
-  enemigo: {fileID: 0}
-  tiempoDisponible: 5
-  tiempoDeDisparo: 0
-  bala: {fileID: 0}
-  puntoDeDisparo: {fileID: 0}
-  fuerzaDeDisparo: 100
-  distanciaDeAtaque: 5
-  probabilidadDeAcierto: 0.5
-  animator: {fileID: 0}
-  efecto: {fileID: 0}
 --- !u!136 &701688946
 CapsuleCollider:
   m_ObjectHideFlags: 0
