@@ -22,9 +22,12 @@ public class Deteccion : MonoBehaviour
 
         if (other.CompareTag("Player"))
             {
-           
+            Debug.Log("Te vi");
+            Vector3 rotar = enemigo.player.position - enemigo.transform.position;
+            rotar.y = 0;
+            enemigo.transform.rotation = Quaternion.LookRotation(rotar);
 
-           
+
 
             //if (Vector3.Distance(transform.position, enemigo.player.transform.position) <= enemigo.distanciaDeAtaque)
 
@@ -36,10 +39,7 @@ public class Deteccion : MonoBehaviour
             Debug.DrawRay(origin, direction, Color.red);
             if (Physics.Raycast(ray, out hit) && hit.collider.CompareTag("Player"))
             {
-                Debug.Log("Te vi");
-                Vector3 rotar = enemigo.player.position - enemigo.transform.position;
-                rotar.y = 0;
-                enemigo.transform.rotation = Quaternion.LookRotation(rotar);
+               
                 float distancia = Vector3.Distance(enemigo.transform.position, enemigo.player.position);
                
                 if (distancia <= enemigo.distanciaDeAtaque)

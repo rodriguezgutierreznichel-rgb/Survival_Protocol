@@ -37,7 +37,7 @@ public class EstadoPatrulla : Estados
 
     public void Salir(CentralMachine cerebro)
     {
-
+        
     }
 
     public void NewPosition(CentralMachine cerebro)
