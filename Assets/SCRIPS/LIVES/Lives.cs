@@ -9,6 +9,8 @@ public class Lives : MonoBehaviour
     public static Lives instance;
     public int vidas = 3;
     public int vidasEnemigo = 3;
+    public int vidasEnemigo2 = 3;
+    public int vidasEnemigo3 = 3;
 
     //Player
     [SerializeField] PlayerMove playerMove;
@@ -23,14 +25,21 @@ public class Lives : MonoBehaviour
     [SerializeField] float posicionY = 20f;
     [SerializeField] Vector3 rotacion = new Vector3(38f, 0f, 0f);
 
-    //Enemigo
+    //Enemigos
     [SerializeField] Transform muerteEnemigo;
     [SerializeField] NavMeshAgent agent;
+    [SerializeField] NavMeshAgent agent2;
+    [SerializeField] NavMeshAgent agent3;
     [SerializeField] Animator animatorEnemigo;
+    [SerializeField] Animator animatorEnemigo2;
+    [SerializeField] Animator animatorEnemigo3;
     [SerializeField] GameObject rastreador;
-    
+    [SerializeField] GameObject rastreador2;
+    [SerializeField] GameObject rastreador3;
 
-    
+
+
+
     public void Awake()
     {
         if (instance == null)
@@ -84,11 +93,51 @@ public class Lives : MonoBehaviour
 
         if (vidasEnemigo <= 0)
         {
-            Puntos.instance.RecibirPuntos(1);
+            Puntos.instance.RecibirPuntos(+1);
             Debug.Log("Has matado al enemigo");
             animatorEnemigo.SetBool("DEAD", true);
             rastreador.SetActive(false);
             agent.isStopped = true;
+
+            if (PoolVidas.instance != null)
+            {
+                PoolVidas.instance.SoltarVida(animatorEnemigo.transform.position + Vector3.up);
+            }
+        }
+    }
+
+    public void PerderVidasEnemigo2(int vidasPerdidasEnemigo2)
+    {
+
+        vidasEnemigo2 -= vidasPerdidasEnemigo2;
+
+        if (vidasEnemigo2 <= 0)
+        {
+            Puntos.instance.RecibirPuntos(+1);
+            Debug.Log("Has matado al enemigo");
+            animatorEnemigo2.SetBool("DEAD", true);
+            rastreador2.SetActive(false);
+            agent2.isStopped = true;
+
+            if (PoolVidas.instance != null)
+            {
+                PoolVidas.instance.SoltarVida(animatorEnemigo.transform.position + Vector3.up);
+            }
+        }
+    }
+
+    public void PerderVidasEnemigo3(int vidasPerdidasEnemigo3)
+    {
+
+        vidasEnemigo3 -= vidasPerdidasEnemigo3;
+
+        if (vidasEnemigo3 <= 0)
+        {
+            Puntos.instance.RecibirPuntos(+1);
+            Debug.Log("Has matado al enemigo");
+            animatorEnemigo3.SetBool("DEAD", true);
+            rastreador3.SetActive(false);
+            agent3.isStopped = true;
 
             if (PoolVidas.instance != null)
             {

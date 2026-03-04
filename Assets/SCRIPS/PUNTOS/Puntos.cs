@@ -30,7 +30,7 @@ public class Puntos : MonoBehaviour
 
     public void RecibirPuntos(int puntosRecibidos)
     {
-        puntos =+ puntosRecibidos;
+        puntos += puntosRecibidos;
 
         Debug.Log("Puntos actuales " + puntos);
 

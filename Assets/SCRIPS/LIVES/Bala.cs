@@ -45,6 +45,22 @@ public class Bala : MonoBehaviour
             // EN LUGAR DE DESTROY: Devolver a la pool
             RegresarAPool();
         }
+        if (collision.gameObject.CompareTag("ENEMIGO 2"))
+        {
+            Lives.instance.PerderVidasEnemigo2(1);
+            Debug.Log("Chocó con el enemigo 2");
+
+            // EN LUGAR DE DESTROY: Devolver a la pool
+            RegresarAPool();
+        }
+        if (collision.gameObject.CompareTag("ENEMIGO 3"))
+        {
+            Lives.instance.PerderVidasEnemigo3(1);
+            Debug.Log("Chocó con el enemigo 3");
+
+            // EN LUGAR DE DESTROY: Devolver a la pool
+            RegresarAPool();
+        }
     }
 
     private void RegresarAPool()

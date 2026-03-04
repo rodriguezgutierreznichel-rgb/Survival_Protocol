@@ -5147,7 +5147,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_TagString
-      value: ENEMIGO
+      value: ENEMIGO 3
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1477212588803909504, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
@@ -5395,6 +5395,8 @@ MonoBehaviour:
   enemigo: {fileID: 5855111973277731201}
   vidas: 20
   vidasEnemigo: 3
+  vidasEnemigo2: 3
+  vidasEnemigo3: 3
   playerMove: {fileID: 93199166}
   vista: {fileID: 93199175}
   view: {fileID: 93199177}
@@ -5406,8 +5408,14 @@ MonoBehaviour:
   rotacion: {x: 84, y: 0, z: 0}
   muerteEnemigo: {fileID: 1611238214}
   agent: {fileID: 5855111973277731195}
+  agent2: {fileID: 1415607517}
+  agent3: {fileID: 370129257}
   animatorEnemigo: {fileID: 5855111973277731189}
+  animatorEnemigo2: {fileID: 1415607518}
+  animatorEnemigo3: {fileID: 370129258}
   rastreador: {fileID: 1312760203}
+  rastreador2: {fileID: 1723624581}
+  rastreador3: {fileID: 141694472}
 --- !u!4 &1014818574
 Transform:
   m_ObjectHideFlags: 0
@@ -6219,7 +6227,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_TagString
-      value: ENEMIGO
+      value: ENEMIGO 2
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1477212588803909504, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}

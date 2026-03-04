@@ -7,6 +7,8 @@ TagManager:
   - CinemachineTarget
   - Obstaculo
   - ENEMIGO
+  - ENEMIGO 2
+  - ENEMIGO 3
   layers:
   - Default
   - TransparentFX
