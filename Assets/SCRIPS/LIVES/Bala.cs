@@ -5,12 +5,15 @@ public class Bala : MonoBehaviour
 {
     private Rigidbody fisicaBalaPlayer;
 
+    [SerializeField] GameObject deteccion;
+
     public float timer;
     public float tiempoDeDesaparicion;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Awake()
     {
+        
         fisicaBalaPlayer = GetComponent<Rigidbody>();
     }
 
@@ -39,26 +42,12 @@ public class Bala : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("ENEMIGO"))
         {
-            Lives.instance.PerderVidasEnemigo(1);
+            
+            deteccion.GetComponent<CantidadVidas>().RecibirDaño();
+
             Debug.Log("Chocó con el enemigo");
 
-            // EN LUGAR DE DESTROY: Devolver a la pool
-            RegresarAPool();
-        }
-        if (collision.gameObject.CompareTag("ENEMIGO 2"))
-        {
-            Lives.instance.PerderVidasEnemigo2(1);
-            Debug.Log("Chocó con el enemigo 2");
-
-            // EN LUGAR DE DESTROY: Devolver a la pool
-            RegresarAPool();
-        }
-        if (collision.gameObject.CompareTag("ENEMIGO 3"))
-        {
-            Lives.instance.PerderVidasEnemigo3(1);
-            Debug.Log("Chocó con el enemigo 3");
-
-            // EN LUGAR DE DESTROY: Devolver a la pool
+            
             RegresarAPool();
         }
     }

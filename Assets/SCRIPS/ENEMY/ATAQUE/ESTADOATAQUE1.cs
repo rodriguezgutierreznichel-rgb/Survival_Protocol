@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class ESTADOATAQUE1 : Estados
 {
+   
     public void Entrar(CentralMachine cerebro)
     {
         cerebro.agent.isStopped = true;
@@ -12,13 +13,14 @@ public class ESTADOATAQUE1 : Estados
 
     public void Ejecutar(CentralMachine cerebro)
     {
+        cerebro.tiempo += Time.deltaTime;
         Disparar(cerebro);
 
     }
 
     public void Salir(CentralMachine cerebro)
     {
-
+       
     }
 
     public void Disparar(CentralMachine cerebro)
@@ -31,37 +33,30 @@ public class ESTADOATAQUE1 : Estados
             return;
         }
 
-        nuevaBala.transform.position = cerebro.puntoDeDisparo.position;
-        nuevaBala.transform.rotation = cerebro.puntoDeDisparo.rotation;
-        nuevaBala.SetActive(true);
+       
 
-
-        Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
-
-        Vector3 direccion = (cerebro.player.position - cerebro.puntoDeDisparo.position).normalized;
-
-        if (Random.value > cerebro.probabilidadDeAcierto)
+        if (cerebro.tiempo >= 2)
         {
-            Debug.Log("Falla");
-            float desviacion = 5f;
-
-            direccion.x += Random.Range(-desviacion, desviacion);
-
-
-            direccion.y += Random.Range(-desviacion, desviacion);
+            nuevaBala.transform.position = cerebro.puntoDeDisparo.position;
+            nuevaBala.transform.rotation = cerebro.puntoDeDisparo.rotation;
+            nuevaBala.SetActive(true);
 
 
-            direccion.z += Random.Range(-desviacion, desviacion);
-        }
-        else
-        {
-            Debug.Log("Acierta");
-            
+            Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
+
+            Vector3 direccion = (cerebro.puntoDeDisparo.forward);
+
+            rb.AddForce(direccion * cerebro.fuerzaDeDisparo);
+
+            GameObject flash = Object.Instantiate(cerebro.efecto, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
+            Object.Destroy(flash, 0.5f);
+            rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
+
         }
 
-        GameObject flash = Object.Instantiate(cerebro.efecto, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
-        Object.Destroy(flash, 0.5f);
-        rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
+
+        
+        
     }
 }
 

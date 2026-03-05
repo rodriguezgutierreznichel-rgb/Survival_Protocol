@@ -6,6 +6,8 @@ public class CentralMachine : MonoBehaviour
 {
     private Estados estadoActual;
 
+    public float tiempo = 0f;
+
     //Patrullar 
     public NavMeshAgent agent;
     public Transform[] posiciones;
@@ -17,6 +19,7 @@ public class CentralMachine : MonoBehaviour
     public GameObject vista;
     public float distancia;
     public GameObject enemigo;
+   
 
     //Atacar
     public float tiempoDisponible = 5f;
