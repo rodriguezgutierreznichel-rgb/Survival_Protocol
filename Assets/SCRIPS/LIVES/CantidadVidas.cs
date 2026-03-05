@@ -20,5 +20,17 @@ public class CantidadVidas : MonoBehaviour
     public void RecibirDaño()
     {
         vidas--;
+
+        if (vidas <= 0)
+        {
+            Debug.Log("MUERTE");
+
+            if (gameObject.CompareTag("ENEMIGO"))
+            {
+                Puntos.instance.RecibirPuntos(1);
+            }
+        }
+
+        
     }
 }

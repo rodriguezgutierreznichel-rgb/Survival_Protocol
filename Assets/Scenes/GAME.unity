@@ -623,25 +623,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 583091413269648081, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
   m_PrefabInstance: {fileID: 1333424628}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &93199172
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93199162}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a7b82f4a721d44d4f8d73510eb9255c0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bala: {fileID: 4689725498328822275, guid: 6f5c944eeae89ea4d853a1dd0061b32b, type: 3}
-  spawnPoint: {fileID: 1993490355}
-  fuerzaDeDisparo: 500
-  tiempoDisponible: 5
-  tiempoDeDisparo: 8
-  pistola: {fileID: 317926647}
-  animator: {fileID: 93199164}
 --- !u!195 &93199174
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -664,18 +645,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &93199175
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 93199162}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c67b9d73bd2b7a04e94b41fb730cace0, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &93199177
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -689,6 +658,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sensibilidad: 100
+--- !u!114 &93199178
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93199162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3b8bc0bd13b865b4a9c23bf0015ccaa9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  vidas: 3
 --- !u!1 &123283766
 GameObject:
   m_ObjectHideFlags: 0
@@ -4987,7 +4969,7 @@ MonoBehaviour:
   vidas: 1
   vidasEnemigo: 3
   playerMove: {fileID: 93199166}
-  vista: {fileID: 93199175}
+  vista: {fileID: 0}
   view: {fileID: 93199177}
   animatorPlayer: {fileID: 93199164}
   camara: {fileID: 330585543}
@@ -7351,16 +7333,13 @@ PrefabInstance:
       addedObject: {fileID: 93199166}
     - targetCorrespondingSourceObject: {fileID: 463236617251174108, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 93199172}
-    - targetCorrespondingSourceObject: {fileID: 463236617251174108, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
-      insertIndex: -1
       addedObject: {fileID: 93199174}
     - targetCorrespondingSourceObject: {fileID: 463236617251174108, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 93199175}
+      addedObject: {fileID: 93199177}
     - targetCorrespondingSourceObject: {fileID: 463236617251174108, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
-      addedObject: {fileID: 93199177}
+      addedObject: {fileID: 93199178}
   m_SourcePrefab: {fileID: 100100000, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
 --- !u!1 &1350580880
 GameObject:
