@@ -43,7 +43,7 @@ public class CantidadVidas : MonoBehaviour
     public void RecibirDaño()
     {
         vidas--;
-        
+       
 
         if (vidas <= 0)
         {

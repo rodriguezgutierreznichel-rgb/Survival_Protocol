@@ -3,7 +3,7 @@ using UnityEngine;
 public class BalaEnemigo : MonoBehaviour
 {
     private Rigidbody fisicaBalaEnemigo;
-
+    [SerializeField] string tagTarget = "Player";
     public float timer;
     public float tiempoDeDesaparicion;
 
