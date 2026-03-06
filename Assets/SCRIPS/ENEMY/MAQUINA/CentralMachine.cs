@@ -6,11 +6,12 @@ public class CentralMachine : MonoBehaviour
 {
     private Estados estadoActual;
 
-    public float tiempo = 0f;
+   
 
     //Patrullar 
     public NavMeshAgent agent;
     public Transform[] posiciones;
+    public float tiempoNewPosition;
 
 
     //Perseguir
@@ -29,7 +30,8 @@ public class CentralMachine : MonoBehaviour
     public float fuerzaDeDisparo = 100f;
     public float distanciaDeAtaque = 5f;
     public float probabilidadDeAcierto = 0.5f;
-    
+    public float tiempo = 0f;
+
 
     //Animaciones
     public Animator animator;

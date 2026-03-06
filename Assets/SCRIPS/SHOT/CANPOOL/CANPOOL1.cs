@@ -10,7 +10,7 @@ public class CANPOOL1 : MonoBehaviour
     [SerializeField] int maxElements;
     [SerializeField] int maxElementsEnemigo;
 
-    [SerializeField] float tiempoRecargaEnemigo = 3f;
+    public float tiempoRecargaEnemigo = 3f;
     [SerializeField] float tiempoRecargaPlayer = 3f;
 
     public float temporizadorRecargaPlayer;

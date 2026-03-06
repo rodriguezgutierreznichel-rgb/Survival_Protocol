@@ -4,10 +4,12 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     //Enemigos
-    [SerializeField] CentralMachine[] enemigos;
-    [SerializeField] GameObject[] rastreadores;
+   
+    [SerializeField] CentralMachine enemigos;
+    [SerializeField] GameObject rastreadores;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animatorEnemigo;
+    private bool yaRegresoAlTrabajo = false; // Variable de control
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
@@ -18,7 +20,17 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        if (!CantidadVidas.playerVivo && !yaRegresoAlTrabajo)
+        {
+            VolverAlTrabajo();
+            yaRegresoAlTrabajo = true; // Solo entra aquí una vez
+        }
+
+        // Si el jugador revive en algún momento, reseteamos el flag
+        if (CantidadVidas.playerVivo)
+        {
+            yaRegresoAlTrabajo = false;
+        }
     }
 
     public void EnemigoMuerto()
@@ -26,33 +38,29 @@ public class EnemyController : MonoBehaviour
         Puntos.instance.RecibirPuntos(1);
         animatorEnemigo.SetBool("DEAD", true);
         agent.isStopped = true;
-        for (int i = 0; i < rastreadores.Length; i++)
+        rastreadores.SetActive(false);
+
+        if (enemigos != null)
         {
-
-            rastreadores[i].SetActive(false);
-
+            enemigos.enabled = false;
         }
+
+        
+
     }
 
     public void VolverAlTrabajo()
     {
-        for (int e = 0; e < enemigos.Length; e++)
-        {
-            CantidadVidas vidasDeEnemigos = enemigos[e].GetComponent<CantidadVidas>();
+        
+            CantidadVidas vidasDeEnemigos = enemigos.GetComponent<CantidadVidas>();
 
             if (vidasDeEnemigos.vidas > 0)
             {
-                enemigos[e].EstadoPatrullar();
+                enemigos.EstadoPatrullar();
+                animatorEnemigo.SetFloat("WALKING", agent.velocity.magnitude);
             }
 
+            rastreadores.SetActive(false);
 
-        }
-
-        for (int i = 0; i < rastreadores.Length; i++)
-        {
-
-            rastreadores[i].SetActive(false);
-
-        }
     }
 }

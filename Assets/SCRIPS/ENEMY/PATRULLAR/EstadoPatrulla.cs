@@ -7,6 +7,10 @@ public class EstadoPatrulla : Estados
     private int posicionAntigua;
     private int nuevaPosicion;
     public float velocidad;
+    private float dejarDescanso = 0.3f;
+
+    //Tiempo
+    private float tiempoNecesario = 1f;
 
     public void Entrar(CentralMachine cerebro)
     {
@@ -24,14 +28,19 @@ public class EstadoPatrulla : Estados
         cerebro.animator.SetFloat("WALKING", cerebro.agent.velocity.magnitude);
 
         // Si llegamos al destino
-        if (!cerebro.agent.pathPending && cerebro.agent.remainingDistance <= cerebro.agent.stoppingDistance)
+        if (!cerebro.agent.pathPending && cerebro.agent.remainingDistance < dejarDescanso)
         {
-            Debug.Log("LLegamos al destino");
-            // Guardamos el destino actual como antigua
+            cerebro.tiempoNewPosition += Time.deltaTime;
+            Debug.Log("Llegamos al destino");
+
             posicionAntigua = nuevaPosicion;
 
-            // Elegimos un nuevo destino aleatorio distinto al anterior
-            NewPosition(cerebro);
+            if (cerebro.tiempoNewPosition >= tiempoNecesario)
+            {
+                NewPosition(cerebro);
+                cerebro.tiempoNewPosition = 0;
+            }
+           
         }
     }
 
@@ -43,7 +52,14 @@ public class EstadoPatrulla : Estados
     public void NewPosition(CentralMachine cerebro)
     {
         //Debug.Log("Entro");
-        nuevaPosicion = Random.Range(0, cerebro.posiciones.Length);
+        int posicionAnterior = nuevaPosicion;
+
+        // Mientras el nuevo índice sea igual al anterior, sigue buscando
+        while (nuevaPosicion == posicionAnterior)
+        {
+            nuevaPosicion = Random.Range(0, cerebro.posiciones.Length);
+        }
+
         cerebro.agent.SetDestination(cerebro.posiciones[nuevaPosicion].position);
         //Debug.Log("esta en " + cerebro.posiciones[nuevaPosicion].position);
     }

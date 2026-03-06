@@ -545,7 +545,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8396173905234799606, guid: 65c7f59f97a72de4f8601a7c1243b995, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 11.89
+      value: 9.29
       objectReference: {fileID: 0}
     - target: {fileID: 8396173905234799606, guid: 65c7f59f97a72de4f8601a7c1243b995, type: 3}
       propertyPath: m_LocalPosition.y
@@ -553,7 +553,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8396173905234799606, guid: 65c7f59f97a72de4f8601a7c1243b995, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 22.7
+      value: 23.94
       objectReference: {fileID: 0}
     - target: {fileID: 8396173905234799606, guid: 65c7f59f97a72de4f8601a7c1243b995, type: 3}
       propertyPath: m_LocalRotation.w
@@ -672,20 +672,25 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barraDeVida: {fileID: 361876462}
   vidas: 3
-  enemigos: []
-  rastreadores:
-  - {fileID: 1312760203}
-  - {fileID: 1723624581}
-  - {fileID: 141694472}
-  agent: {fileID: 0}
-  animatorEnemigo: {fileID: 0}
-  animatorPlayer: {fileID: 93199164}
-  playerMove: {fileID: 93199166}
-  view: {fileID: 93199177}
   camara: {fileID: 330585543}
   tipoDeCurvaDelBoton: 0
   velocidadDeAnimacion: 1
   newPosition: {x: 0, y: 0, z: -3}
+--- !u!114 &93199180
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 93199162}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: f236651f7548baa4688fad46d21bf41e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  animatorPlayer: {fileID: 93199164}
+  playerMove: {fileID: 93199166}
+  view: {fileID: 93199177}
 --- !u!1 &123283766
 GameObject:
   m_ObjectHideFlags: 0
@@ -1922,12 +1927,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0cbcebdea6c97479604d87164f23f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempo: 0
   agent: {fileID: 370129257}
   posiciones:
   - {fileID: 1898452174}
   - {fileID: 123283767}
   - {fileID: 1137796643}
+  tiempoNewPosition: 0
   persiguiendo: 0
   player: {fileID: 93199168}
   vista: {fileID: 1358338447}
@@ -1940,6 +1945,7 @@ MonoBehaviour:
   fuerzaDeDisparo: 1
   distanciaDeAtaque: 3
   probabilidadDeAcierto: 100
+  tiempo: 0
   animator: {fileID: 370129258}
   efecto: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
 --- !u!136 &370129256
@@ -2011,14 +2017,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barraDeVida: {fileID: 361876462}
   vidas: 3
-  enemigos: []
-  rastreadores:
-  - {fileID: 141694472}
-  agent: {fileID: 370129257}
-  animatorEnemigo: {fileID: 370129258}
-  animatorPlayer: {fileID: 0}
-  playerMove: {fileID: 0}
-  view: {fileID: 0}
   camara: {fileID: 0}
   tipoDeCurvaDelBoton: 0
   velocidadDeAnimacion: 0
@@ -2035,10 +2033,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed4cf4dd91fd6543bdde8509fc04573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemigos: []
-  rastreadores: []
-  agent: {fileID: 0}
-  animatorEnemigo: {fileID: 0}
+  enemigos: {fileID: 370129255}
+  rastreadores: {fileID: 141694472}
+  agent: {fileID: 370129257}
+  animatorEnemigo: {fileID: 370129258}
 --- !u!1 &384470098
 GameObject:
   m_ObjectHideFlags: 0
@@ -4904,11 +4902,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: a14665d7f909ced4b8f07a30f3a812e6, type: 2}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_Name
-      value: ENEMIGO (2)
+      value: ENEMIGO 3
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_TagString
@@ -5982,11 +5980,11 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: a14665d7f909ced4b8f07a30f3a812e6, type: 2}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_Name
-      value: ENEMIGO (1)
+      value: ENEMIGO 2
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_TagString
@@ -7541,6 +7539,9 @@ PrefabInstance:
     - targetCorrespondingSourceObject: {fileID: 463236617251174108, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
       insertIndex: -1
       addedObject: {fileID: 93199178}
+    - targetCorrespondingSourceObject: {fileID: 463236617251174108, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 93199180}
   m_SourcePrefab: {fileID: 100100000, guid: 76b9d8179905d454e9bf6dcc847231ce, type: 3}
 --- !u!1 &1350580880
 GameObject:
@@ -7960,12 +7961,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0cbcebdea6c97479604d87164f23f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempo: 0
   agent: {fileID: 1415607517}
   posiciones:
   - {fileID: 680537022}
   - {fileID: 1834811332}
   - {fileID: 1171911670}
+  tiempoNewPosition: 0
   persiguiendo: 0
   player: {fileID: 93199168}
   vista: {fileID: 727265271}
@@ -7978,6 +7979,7 @@ MonoBehaviour:
   fuerzaDeDisparo: 1
   distanciaDeAtaque: 3
   probabilidadDeAcierto: 100
+  tiempo: 0
   animator: {fileID: 1415607518}
   efecto: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
 --- !u!136 &1415607516
@@ -8049,14 +8051,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barraDeVida: {fileID: 361876462}
   vidas: 3
-  enemigos: []
-  rastreadores:
-  - {fileID: 1723624581}
-  agent: {fileID: 1415607517}
-  animatorEnemigo: {fileID: 1415607518}
-  animatorPlayer: {fileID: 0}
-  playerMove: {fileID: 0}
-  view: {fileID: 0}
   camara: {fileID: 0}
   tipoDeCurvaDelBoton: 0
   velocidadDeAnimacion: 0
@@ -8073,10 +8067,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed4cf4dd91fd6543bdde8509fc04573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemigos: []
-  rastreadores: []
-  agent: {fileID: 0}
-  animatorEnemigo: {fileID: 0}
+  enemigos: {fileID: 1415607515}
+  rastreadores: {fileID: 1723624581}
+  agent: {fileID: 1415607517}
+  animatorEnemigo: {fileID: 1415607518}
 --- !u!1 &1450973214
 GameObject:
   m_ObjectHideFlags: 0
@@ -9866,7 +9860,7 @@ Transform:
   m_GameObject: {fileID: 1956886245}
   serializedVersion: 2
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 16.64, y: 0.05, z: 12.03}
+  m_LocalPosition: {x: 8.12, y: 0.05, z: 18.07}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -11800,7 +11794,7 @@ PrefabInstance:
       objectReference: {fileID: 9100000, guid: a14665d7f909ced4b8f07a30f3a812e6, type: 2}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_Name
-      value: ENEMIGO
+      value: ENEMIGO 1
       objectReference: {fileID: 0}
     - target: {fileID: 5651475920658683087, guid: 435a90b65fcc448479706fcfa8b60e17, type: 3}
       propertyPath: m_IsActive
@@ -12606,12 +12600,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bf0cbcebdea6c97479604d87164f23f0, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  tiempo: 0
   agent: {fileID: 5855111973277731195}
   posiciones:
   - {fileID: 1956886246}
   - {fileID: 751848943}
   - {fileID: 1666420528}
+  tiempoNewPosition: 0
   persiguiendo: 0
   player: {fileID: 93199168}
   vista: {fileID: 23984990}
@@ -12624,6 +12618,7 @@ MonoBehaviour:
   fuerzaDeDisparo: 1
   distanciaDeAtaque: 3
   probabilidadDeAcierto: 100
+  tiempo: 0
   animator: {fileID: 5855111973277731189}
   efecto: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
 --- !u!114 &5855111973277731202
@@ -12640,15 +12635,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   barraDeVida: {fileID: 361876462}
   vidas: 3
-  enemigos:
-  - {fileID: 5855111973277731201}
-  rastreadores:
-  - {fileID: 1312760203}
-  agent: {fileID: 5855111973277731195}
-  animatorEnemigo: {fileID: 5855111973277731189}
-  animatorPlayer: {fileID: 0}
-  playerMove: {fileID: 0}
-  view: {fileID: 0}
   camara: {fileID: 0}
   tipoDeCurvaDelBoton: 0
   velocidadDeAnimacion: 0
@@ -12665,10 +12651,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 7ed4cf4dd91fd6543bdde8509fc04573, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemigos:
-  - {fileID: 5855111973277731201}
-  rastreadores:
-  - {fileID: 1312760203}
+  enemigos: {fileID: 5855111973277731201}
+  rastreadores: {fileID: 1312760203}
   agent: {fileID: 5855111973277731195}
   animatorEnemigo: {fileID: 5855111973277731189}
 --- !u!1001 &6898019953210243609

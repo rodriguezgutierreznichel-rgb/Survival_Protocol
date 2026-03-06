@@ -5,22 +5,17 @@ using UnityEngine.UI;
 
 public class CantidadVidas : MonoBehaviour
 {
+    public static bool playerVivo = true;
+
 
     //Vidas
     private int vidasMaximas;
     public Image barraDeVida;
     public int vidas = 3;
 
-    //Enemigos
-    [SerializeField] CentralMachine[] enemigos;
-    [SerializeField] GameObject[] rastreadores;
-    [SerializeField] NavMeshAgent agent;
-    [SerializeField] Animator animatorEnemigo;
+   
 
-    //Player
-    [SerializeField] Animator animatorPlayer;
-    [SerializeField] PlayerMove playerMove;
-    [SerializeField] VIEW view;
+    
 
     //Camara y sus animaciones
     [SerializeField] GameObject camara;
@@ -43,35 +38,27 @@ public class CantidadVidas : MonoBehaviour
     public void RecibirDaño()
     {
         vidas--;
-       
 
-        if (vidas <= 0)
+        if (gameObject.CompareTag("Player"))
         {
-            if (gameObject.CompareTag("Player"))
+            barraDeVida.fillAmount = (float)vidas / vidasMaximas;
+
+            if (vidas <= 0)
             {
-                barraDeVida.fillAmount = (float)vidas / vidasMaximas;
-                AnimacionCamara();
-                VolverAlTrabajo();
-                animatorPlayer.SetBool("DEAD", true);
-                playerMove.enabled = false;
-                view.enabled = false;
-            }
-
-            if (gameObject.CompareTag("ENEMIGO"))
-            {
-                Puntos.instance.RecibirPuntos(1);
-                animatorEnemigo.SetBool("DEAD", true);
-                agent.isStopped = true;
-                for (int i = 0; i < rastreadores.Length; i++)
-                {
-
-                    rastreadores[i].SetActive(false);
-
-                }
+                RecibirDañoPlayer();
             }
         }
 
-        
+        if (gameObject.CompareTag("ENEMIGO"))
+        {
+            Debug.Log("barra vida");
+
+            if (vidas <= 0)
+            {
+                RecibirDañoEnemigo();
+            }
+        }
+ 
     }
 
     public void AnimacionCamara()
@@ -80,25 +67,26 @@ public class CantidadVidas : MonoBehaviour
         LeanTween.moveLocal(camara, posicionFinal, velocidadDeAnimacion).setEase(tipoDeCurvaDelBoton);
     }
 
-    public void VolverAlTrabajo()
+    public void RecibirDañoPlayer()
     {
-        for (int e = 0; e < enemigos.Length; e++)
-        {
-            CantidadVidas vidasDeEnemigos = enemigos[e].GetComponent<CantidadVidas>();
+        playerVivo = false;
 
-            if (vidasDeEnemigos.vidas > 0)
-            {
-                enemigos[e].EstadoPatrullar();
-            }
-            
-            
-        }
 
-        for (int i = 0; i < rastreadores.Length; i++)
-        {
+        AnimacionCamara();
 
-            rastreadores[i].SetActive(false);
-
-        }
+        PlayerController player = GetComponent<PlayerController>();
+        if (player != null) player.MuertePlayer();
     }
+
+    public void RecibirDañoEnemigo()
+    {
+        Puntos.instance.RecibirPuntos(1);
+        EnemyController enemy = GetComponent<EnemyController>();
+        if (enemy != null) enemy.EnemigoMuerto();
+    }
+   
+    
+
+
+
 }
