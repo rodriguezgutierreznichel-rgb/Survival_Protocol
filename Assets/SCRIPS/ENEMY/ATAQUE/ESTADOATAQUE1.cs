@@ -2,7 +2,8 @@ using UnityEngine;
 
 public class ESTADOATAQUE1 : Estados
 {
-   
+    public float tiempoDesapareciónEffect = 0.5f;
+
     public void Entrar(CentralMachine cerebro)
     {
         cerebro.agent.isStopped = true;
@@ -14,7 +15,13 @@ public class ESTADOATAQUE1 : Estados
     public void Ejecutar(CentralMachine cerebro)
     {
         cerebro.tiempo += Time.deltaTime;
-        Disparar(cerebro);
+
+        // Solo intentamos disparar cuando el cronómetro llega al límite
+        if (cerebro.tiempo >= 2f)
+        {
+            Disparar(cerebro);
+            cerebro.tiempo = 0; // REINICIAR el tiempo para que no dispare ráfagas infinitas
+        }
 
     }
 
@@ -25,38 +32,31 @@ public class ESTADOATAQUE1 : Estados
 
     public void Disparar(CentralMachine cerebro)
     {
-        GameObject nuevaBala = CANPOOL1.instance.PopEnemigo();
-
-        if (nuevaBala == null)
-        {
-            Debug.Log("No puedo disparar");
-            return;
-        }
-
+        // 1. Apuntar al jugador (Asegúrate de que 'cerebro' tenga la referencia al jugador)
+        Vector3 direccionAlJugador = (cerebro.player.position - cerebro.puntoDeDisparo.position).normalized;
        
 
-        if (cerebro.tiempo >= 2)
+        // 2. Obtener la bala del Pool
+        GameObject nuevaBala = CANPOOL1.instance.PopEnemigo();
+
+        if (nuevaBala != null)
         {
             nuevaBala.transform.position = cerebro.puntoDeDisparo.position;
-            nuevaBala.transform.rotation = cerebro.puntoDeDisparo.rotation;
+            nuevaBala.transform.forward = direccionAlJugador;
             nuevaBala.SetActive(true);
-
 
             Rigidbody rb = nuevaBala.GetComponent<Rigidbody>();
 
-            Vector3 direccion = (cerebro.puntoDeDisparo.forward);
+            // Limpiamos la velocidad previa por si el Pool nos da una bala con inercia
+            rb.linearVelocity = Vector3.zero;
 
-            rb.AddForce(direccion * cerebro.fuerzaDeDisparo);
+            
+            rb.AddForce(direccionAlJugador * cerebro.fuerzaDeDisparo);
 
+            // Efecto visual
             GameObject flash = Object.Instantiate(cerebro.efecto, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
-            Object.Destroy(flash, 0.5f);
-            rb.AddForce(direccion.normalized * cerebro.fuerzaDeDisparo, ForceMode.Impulse);
-
+            Object.Destroy(flash, tiempoDesapareciónEffect);
         }
-
-
-        
-        
     }
 }
 

@@ -19,8 +19,8 @@ public class LANZADOR1 : MonoBehaviour
     public float tiempoDeDisparo = 0f;
 
     //Efecto de disparo
-    [SerializeField]
-    GameObject efecto;                   
+    [SerializeField] GameObject efecto;   
+    private float tiempoDesapareciónEffect = 0.5f;
 
 
 
@@ -65,7 +65,7 @@ public class LANZADOR1 : MonoBehaviour
                 proyectil.SetActive(true);
 
                 GameObject flash = Instantiate(efecto, puntoDisparo.position, puntoDisparo.rotation);
-                Destroy(flash, 0.5f);
+                Destroy(flash, tiempoDesapareciónEffect);
 
                 Rigidbody rb = proyectil.GetComponent<Rigidbody>();
 

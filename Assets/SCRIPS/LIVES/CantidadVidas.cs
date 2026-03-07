@@ -6,6 +6,7 @@ using UnityEngine.UI;
 public class CantidadVidas : MonoBehaviour
 {
     public static bool playerVivo = true;
+    public static bool playerMuerto = false;
 
 
     //Vidas
@@ -17,11 +18,7 @@ public class CantidadVidas : MonoBehaviour
 
     
 
-    //Camara y sus animaciones
-    [SerializeField] GameObject camara;
-    [SerializeField] LeanTweenType tipoDeCurvaDelBoton;
-    [SerializeField] float velocidadDeAnimacion = 0f;
-    [SerializeField] Vector3 newPosition = new Vector3(0f, 0f, -5f);
+   
 
     public void Start()
     {
@@ -61,18 +58,15 @@ public class CantidadVidas : MonoBehaviour
  
     }
 
-    public void AnimacionCamara()
-    {
-        Vector3 posicionFinal = camara.transform.localPosition + newPosition;
-        LeanTween.moveLocal(camara, posicionFinal, velocidadDeAnimacion).setEase(tipoDeCurvaDelBoton);
-    }
+   
 
     public void RecibirDañoPlayer()
     {
         playerVivo = false;
+        playerMuerto = true;
 
-
-        AnimacionCamara();
+        CamaraAnimacion animacionDeLaCamara = GetComponent<CamaraAnimacion>();
+        animacionDeLaCamara.AnimacionCamara();
 
         PlayerController player = GetComponent<PlayerController>();
         if (player != null) player.MuertePlayer();
@@ -80,7 +74,6 @@ public class CantidadVidas : MonoBehaviour
 
     public void RecibirDañoEnemigo()
     {
-        Puntos.instance.RecibirPuntos(1);
         EnemyController enemy = GetComponent<EnemyController>();
         if (enemy != null) enemy.EnemigoMuerto();
     }

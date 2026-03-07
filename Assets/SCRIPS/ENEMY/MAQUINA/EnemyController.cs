@@ -4,17 +4,24 @@ using UnityEngine.AI;
 public class EnemyController : MonoBehaviour
 {
     //Enemigos
-   
+    public int CantidadDePuntos = 1;
     [SerializeField] CentralMachine enemigos;
-    [SerializeField] GameObject rastreadores;
+    public GameObject rastreadores;
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animatorEnemigo;
     private bool yaRegresoAlTrabajo = false; // Variable de control
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+        CantidadVidas.playerVivo = true;
+        CantidadVidas.playerMuerto = false;
+
+        if (rastreadores != null)
+        {
+            rastreadores.SetActive(true);
+        }
     }
 
     // Update is called once per frame
@@ -35,7 +42,9 @@ public class EnemyController : MonoBehaviour
 
     public void EnemigoMuerto()
     {
-        Puntos.instance.RecibirPuntos(1);
+
+
+        Puntos.instance.RecibirPuntos(CantidadDePuntos);
         animatorEnemigo.SetBool("DEAD", true);
         agent.isStopped = true;
         rastreadores.SetActive(false);
@@ -51,16 +60,28 @@ public class EnemyController : MonoBehaviour
 
     public void VolverAlTrabajo()
     {
-        
-            CantidadVidas vidasDeEnemigos = enemigos.GetComponent<CantidadVidas>();
+        CantidadVidas vidasDeEnemigos = enemigos.GetComponent<CantidadVidas>();
 
-            if (vidasDeEnemigos.vidas > 0)
+        if (vidasDeEnemigos.vidas > 0)
+        {
+            // Si el jugador está muerto, apagamos la visión
+            if (CantidadVidas.playerVivo == false)
             {
                 enemigos.EstadoPatrullar();
                 animatorEnemigo.SetFloat("WALKING", agent.velocity.magnitude);
+                rastreadores.SetActive(false);
             }
+            else
+            {
+                // Si el jugador está vivo (al reiniciar), la encendemos
+                rastreadores.SetActive(true);
+            }
+        }
 
-            rastreadores.SetActive(false);
+
+
 
     }
+
+    
 }
