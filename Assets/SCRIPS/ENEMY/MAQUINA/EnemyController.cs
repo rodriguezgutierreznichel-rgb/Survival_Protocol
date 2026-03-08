@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     [SerializeField] NavMeshAgent agent;
     [SerializeField] Animator animatorEnemigo;
     private bool yaRegresoAlTrabajo = false; // Variable de control
+    
    
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -43,7 +44,7 @@ public class EnemyController : MonoBehaviour
     public void EnemigoMuerto()
     {
 
-
+        GetComponent<Collider>().enabled = false;
         Puntos.instance.RecibirPuntos(CantidadDePuntos);
         animatorEnemigo.SetBool("DEAD", true);
         agent.isStopped = true;
