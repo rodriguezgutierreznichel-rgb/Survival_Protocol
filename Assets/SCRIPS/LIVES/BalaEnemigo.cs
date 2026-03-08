@@ -46,6 +46,7 @@ public class BalaEnemigo : MonoBehaviour
 
             RegresarAPool();
         }
+        
     }
 
     private void RegresarAPool()

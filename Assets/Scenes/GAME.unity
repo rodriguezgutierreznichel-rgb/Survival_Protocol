@@ -16373,6 +16373,10 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 3822254081949021019, guid: 4afb543ec2e841b4080c65fb253c0485, type: 3}
+      propertyPath: m_TagString
+      value: Obstaculo
+      objectReference: {fileID: 0}
     - target: {fileID: 4339112028134090750, guid: 4afb543ec2e841b4080c65fb253c0485, type: 3}
       propertyPath: m_LocalScale.z
       value: 26.313637
