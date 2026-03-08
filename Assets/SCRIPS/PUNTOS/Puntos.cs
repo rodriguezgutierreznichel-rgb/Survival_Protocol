@@ -1,5 +1,6 @@
-using UnityEngine;
 using TMPro;
+using UnityEngine;
+using UnityEngine.SceneManagement;
 public class Puntos : MonoBehaviour
 {
     public static Puntos instance;
@@ -36,7 +37,12 @@ public class Puntos : MonoBehaviour
 
         if (puntos == puntosNecesarios)
         {
-            Debug.Log("Has ganado");
+            Victoria();
         }
+    }
+
+    public void Victoria()
+    {
+        SceneManager.LoadScene("UI_VICTORIA");
     }
 }

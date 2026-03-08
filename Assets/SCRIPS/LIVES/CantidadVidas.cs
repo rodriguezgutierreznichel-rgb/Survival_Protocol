@@ -65,6 +65,8 @@ public class CantidadVidas : MonoBehaviour
         playerVivo = false;
         playerMuerto = true;
 
+       
+
         CamaraAnimacion animacionDeLaCamara = GetComponent<CamaraAnimacion>();
         animacionDeLaCamara.AnimacionCamara();
 
