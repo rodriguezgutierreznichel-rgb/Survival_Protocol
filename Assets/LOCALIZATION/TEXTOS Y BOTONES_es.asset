@@ -26,6 +26,18 @@ MonoBehaviour:
     m_Localized: EMPEZAR
     m_Metadata:
       m_Items: []
+  - m_Id: 271149881671680
+    m_Localized: REINICIAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272716068339712
+    m_Localized: HAS GANADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 273922312421376
+    m_Localized: HAS MUERTO
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

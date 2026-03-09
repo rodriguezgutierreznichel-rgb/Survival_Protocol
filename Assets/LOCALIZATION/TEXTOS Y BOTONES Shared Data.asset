@@ -23,6 +23,18 @@ MonoBehaviour:
     m_Key: -SALIR
     m_Metadata:
       m_Items: []
+  - m_Id: 271149881671680
+    m_Key: -REINICIAR
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272716068339712
+    m_Key: -HAS GANADO
+    m_Metadata:
+      m_Items: []
+  - m_Id: 273922312421376
+    m_Key: -HAS MUERTO
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

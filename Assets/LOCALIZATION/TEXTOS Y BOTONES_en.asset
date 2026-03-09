@@ -26,6 +26,18 @@ MonoBehaviour:
     m_Localized: START
     m_Metadata:
       m_Items: []
+  - m_Id: 271149881671680
+    m_Localized: 'RESTART '
+    m_Metadata:
+      m_Items: []
+  - m_Id: 272716068339712
+    m_Localized: YOU HAVE WON
+    m_Metadata:
+      m_Items: []
+  - m_Id: 273922312421376
+    m_Localized: YOU ARE DEAD
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

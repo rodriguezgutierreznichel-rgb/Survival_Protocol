@@ -2,20 +2,21 @@ using TMPro;
 using UnityEngine;
 using UnityEngine.Localization.Settings;
 
-public class InicioTraduccion : MonoBehaviour
+public class TraduccionDerrota : MonoBehaviour
 {
-    public TextMeshProUGUI botonInicio, botonSalir;
+    public TextMeshProUGUI botonReintentar, botonSalir, textDerrota;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     // Update is called once per frame
     void Update()
     {
-        botonInicio.text = LocalizationSettings.StringDatabase.GetLocalizedString("TEXTOS Y BOTONES", "-EMPEZAR");
+        botonReintentar.text = LocalizationSettings.StringDatabase.GetLocalizedString("TEXTOS Y BOTONES", "-REINICIAR");
         botonSalir.text = LocalizationSettings.StringDatabase.GetLocalizedString("TEXTOS Y BOTONES", "-SALIR");
+        textDerrota.text = LocalizationSettings.StringDatabase.GetLocalizedString("TEXTOS Y BOTONES", "-HAS MUERTO");
     }
 }
