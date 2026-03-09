@@ -39,6 +39,10 @@ public class CentralMachine : MonoBehaviour
     //Efecto de disparo
     public GameObject efecto;
 
+    //Sonido
+    public AudioSource audioSource;
+    public AudioClip sonidoDisparo;
+
     public void Start()
     {
         CambiarEstado(new EstadoPatrulla());

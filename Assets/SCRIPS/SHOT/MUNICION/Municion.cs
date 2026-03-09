@@ -19,7 +19,14 @@ public class Municion : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             CanPool.instance.Recargar(+1);
-            Destroy(gameObject);
+            RegresarAPool();
         }
+    }
+
+    private void RegresarAPool()
+    {
+        // Usamos el método específico para ítems, NO el de balas
+        CanPool.instance.PushItemMunicion(this.gameObject);
+        Debug.Log("Cubo de munición guardado en su propio pool");
     }
 }

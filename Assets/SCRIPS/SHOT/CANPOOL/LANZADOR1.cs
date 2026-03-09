@@ -22,7 +22,9 @@ public class LANZADOR1 : MonoBehaviour
     [SerializeField] GameObject efecto;   
     private float tiempoDesapareciónEffect = 0.5f;
 
-
+    //Sonidos
+    public AudioSource audioSource;
+    public AudioClip sonidoDisparo;
 
     private void Awake()
     {
@@ -66,6 +68,7 @@ public class LANZADOR1 : MonoBehaviour
 
                 GameObject flash = Instantiate(efecto, puntoDisparo.position, puntoDisparo.rotation);
                 Destroy(flash, tiempoDesapareciónEffect);
+                audioSource.PlayOneShot(sonidoDisparo);
 
                 Rigidbody rb = proyectil.GetComponent<Rigidbody>();
 

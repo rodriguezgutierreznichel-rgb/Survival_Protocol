@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.Audio;
 
 public class ESTADOATAQUE1 : Estados
 {
@@ -56,6 +57,7 @@ public class ESTADOATAQUE1 : Estados
             // Efecto visual
             GameObject flash = Object.Instantiate(cerebro.efecto, cerebro.puntoDeDisparo.position, cerebro.puntoDeDisparo.rotation);
             Object.Destroy(flash, tiempoDesapareciónEffect);
+            cerebro.audioSource.PlayOneShot(cerebro.sonidoDisparo);
         }
     }
 }

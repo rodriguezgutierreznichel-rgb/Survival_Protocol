@@ -17,6 +17,7 @@ public class CanPool : MonoBehaviour
 
     Stack<GameObject> pool = new Stack<GameObject>();
     Stack<GameObject> poolEnemigo = new Stack<GameObject>();
+    Stack<GameObject> poolItemsMunicion = new Stack<GameObject>();
 
     private void Awake()
     {
@@ -47,21 +48,31 @@ public class CanPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (maxElementsEnemigo <= 0 && Lives.instance.vidasEnemigo > 0)
-        {
-            temporizadorRecarga += Time.deltaTime;
+        CantidadVidas cantidad = GetComponent<CantidadVidas>();
 
-            if (temporizadorRecarga >= tiempoRecargaEnemigo)
+        // Validamos que 'cantidad' no sea nulo antes de usarlo
+        if (cantidad != null)
+        {
+            if (maxElementsEnemigo <= 0 && cantidad.vidas > 0 && gameObject.CompareTag("ENEMIGO"))
             {
-                maxElementsEnemigo++;
+                temporizadorRecarga += Time.deltaTime;
+
+                if (temporizadorRecarga >= tiempoRecargaEnemigo)
+                {
+                    maxElementsEnemigo++;
+                    temporizadorRecarga = 0;
+                    Debug.Log("Enemigo recargó 1 bala");
+                }
+            }
+            else if (cantidad.vidas <= 0 && gameObject.CompareTag("ENEMIGO"))
+            {
                 temporizadorRecarga = 0;
-                Debug.Log("Enemigo recargó 1 bala");
             }
         }
-        else if (Lives.instance.vidasEnemigo <= 0)
+        else
         {
-            // Opcional: Resetear el temporizador si el enemigo muere
-            temporizadorRecarga = 0;
+            // Esto te avisará en consola si falta el componente
+            // Debug.LogWarning("No se encontró el componente CantidadVidas en " + gameObject.name);
         }
     }
 
@@ -134,7 +145,12 @@ public class CanPool : MonoBehaviour
         Debug.Log("valas actuales " + maxElements);
 
     }
+    public void PushItemMunicion(GameObject obj)
+    {
+        obj.SetActive(false);
+        poolItemsMunicion.Push(obj); // Se guarda en su propia lista
+    }
 
-   
+
 }
 
