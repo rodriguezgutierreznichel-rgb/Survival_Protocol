@@ -7151,7 +7151,7 @@ MonoBehaviour:
   shootingForce: 20
   animator: {fileID: 93199164}
   tiempoDisponible: 5
-  tiempoDeDisparo: 1
+  tiempoDeDisparo: 0
   efecto: {fileID: 3077343761403282166, guid: f78aaaec3b393e24ca74cd6de8194347, type: 3}
   audioSource: {fileID: 1174555225}
   sonidoDisparo: {fileID: 8300000, guid: 5035b68501fce314d97255aabfa1802f, type: 3}
