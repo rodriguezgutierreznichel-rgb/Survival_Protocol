@@ -19,8 +19,8 @@ public class VIEW : MonoBehaviour
     {
         controls = new ControllersGame();
 
-        controls.PlayerControllers.VIEW.performed += ctx => lookInput = ctx.ReadValue<Vector2>();
-        controls.PlayerControllers.VIEW.canceled += ctx => lookInput = Vector2.zero;
+        controls.PlayerControllers.VIEW.performed += informacion => lookInput = informacion.ReadValue<Vector2>();
+        controls.PlayerControllers.VIEW.canceled += informacion => lookInput = Vector2.zero;
     }
 
     void OnEnable()

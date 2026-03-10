@@ -27,10 +27,6 @@ public class Deteccion : MonoBehaviour
             rotar.y = 0;
             enemigo.transform.rotation = Quaternion.LookRotation(rotar);
 
-
-
-            //if (Vector3.Distance(transform.position, enemigo.player.transform.position) <= enemigo.distanciaDeAtaque)
-
             Vector3 origin = enemigo.vista.transform.position;
             Vector3 direction = enemigo.vista.transform.forward * enemigo.distancia;
             Ray ray = new Ray(origin, direction);
