@@ -23,6 +23,7 @@ public class CantidadVidas : MonoBehaviour
     public void Start()
     {
         vidasMaximas = vidas;
+
     }
 
 
@@ -79,9 +80,26 @@ public class CantidadVidas : MonoBehaviour
         EnemyController enemy = GetComponent<EnemyController>();
         if (enemy != null) enemy.EnemigoMuerto();
     }
-   
-    
 
+
+    public void CurarPlayer(int cantidad)
+    {
+        // Sumamos vida pero limitamos al máximo original
+        vidas += cantidad;
+
+        if (vidas > vidasMaximas)
+        {
+            vidas = vidasMaximas;
+        }
+
+        // Actualizamos la barra de vida visualmente
+        if (barraDeVida != null)
+        {
+            barraDeVida.fillAmount = (float)vidas / vidasMaximas;
+        }
+
+        Debug.Log("Vida recuperada. Vidas actuales: " + vidas);
+    }
 
 
 }

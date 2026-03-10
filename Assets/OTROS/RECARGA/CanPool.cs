@@ -11,7 +11,8 @@ public class CanPool : MonoBehaviour
     [SerializeField] int maxElementsEnemigo;
 
     [SerializeField] float tiempoRecargaEnemigo = 3f;
-    
+
+    bool estaRecargandoEnemigo = false;
 
     public float temporizadorRecarga;
 
@@ -48,31 +49,31 @@ public class CanPool : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        CantidadVidas cantidad = GetComponent<CantidadVidas>();
-
-        // Validamos que 'cantidad' no sea nulo antes de usarlo
-        if (cantidad != null)
+        // 1. Si llega a 0, activamos el modo recarga
+        if (maxElementsEnemigo <= 0)
         {
-            if (maxElementsEnemigo <= 0 && cantidad.vidas > 0 && gameObject.CompareTag("ENEMIGO"))
-            {
-                temporizadorRecarga += Time.deltaTime;
+            estaRecargandoEnemigo = true;
+        }
 
-                if (temporizadorRecarga >= tiempoRecargaEnemigo)
+        // 2. Si está en modo recarga, ejecutamos el tiempo
+        if (estaRecargandoEnemigo)
+        {
+            temporizadorRecarga += Time.deltaTime;
+
+            if (temporizadorRecarga >= tiempoRecargaEnemigo)
+            {
+                maxElementsEnemigo++;
+                temporizadorRecarga = 0;
+                Debug.Log("Recargando... Ahora tiene: " + maxElementsEnemigo);
+
+                // 3. Si ya llegó al máximo de 3, desactivamos la recarga
+                if (maxElementsEnemigo >= 3)
                 {
-                    maxElementsEnemigo++;
-                    temporizadorRecarga = 0;
-                    Debug.Log("Enemigo recargó 1 bala");
+                    maxElementsEnemigo = 3; // Aseguramos que no pase de 3
+                    estaRecargandoEnemigo = false;
+                    Debug.Log("Recarga completa (3 balas)");
                 }
             }
-            else if (cantidad.vidas <= 0 && gameObject.CompareTag("ENEMIGO"))
-            {
-                temporizadorRecarga = 0;
-            }
-        }
-        else
-        {
-            // Esto te avisará en consola si falta el componente
-            // Debug.LogWarning("No se encontró el componente CantidadVidas en " + gameObject.name);
         }
     }
 
@@ -102,28 +103,25 @@ public class CanPool : MonoBehaviour
 
     public GameObject PopEnemigo()
     {
-        GameObject objectToReturn = null;
-
-        if (maxElementsEnemigo <= 0)
+        // Solo dispara si NO está recargando y tiene balas
+        if (maxElementsEnemigo > 0 && !estaRecargandoEnemigo)
         {
-            Debug.Log("Balas insuficientes");
-            return null;
+            maxElementsEnemigo--;
+
+            if (poolEnemigo.Count != 0)
+            {
+                return poolEnemigo.Pop();
+            }
+            else
+            {
+                GameObject obj = Instantiate(balaEnemigo);
+                obj.SetActive(false);
+                return obj;
+            }
         }
 
-        maxElementsEnemigo--;
-       
-
-        if (poolEnemigo.Count != 0)
-        {
-            objectToReturn = poolEnemigo.Pop();
-        }
-        else
-        {
-            objectToReturn = Instantiate(balaEnemigo);
-            objectToReturn.SetActive(false);
-        }
-
-        return objectToReturn;
+        Debug.Log("No puede disparar: o tiene 0 balas o está recargando");
+        return null;
     }
 
     public void PushObject(GameObject obj)

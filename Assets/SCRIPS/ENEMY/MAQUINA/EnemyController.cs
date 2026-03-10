@@ -55,7 +55,17 @@ public class EnemyController : MonoBehaviour
             enemigos.enabled = false;
         }
 
-        
+        if (PoolVidas.instance != null)
+        {
+            // Soltamos el cubo en la posición actual del enemigo
+            PoolVidas.instance.SoltarVida(transform.position + Vector3.up * 1.0f);
+        }
+        if (PoolMunicion.instance != null)
+        {
+            // Soltamos el cubo en la posición actual del enemigo
+            PoolMunicion.instance.SoltarMunicion(transform.position + Vector3.up * 1.0f);
+        }
+
 
     }
 
