@@ -58,16 +58,7 @@ public class CANPOOL1 : MonoBehaviour
             temporizadorRecargaPlayer += Time.deltaTime;
         }
 
-        if (temporizadorRecargaEnemigo >= tiempoRecargaEnemigo)
-        {
-           
-            maxElementsEnemigo = 1;
-        }
-        if (temporizadorRecargaPlayer >= tiempoRecargaPlayer)
-        {
-            maxElements = 1;
-           
-        }
+       
     }
 
     public GameObject PopObject()

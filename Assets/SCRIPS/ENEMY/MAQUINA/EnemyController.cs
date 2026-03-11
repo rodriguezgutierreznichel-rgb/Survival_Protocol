@@ -55,6 +55,8 @@ public class EnemyController : MonoBehaviour
             enemigos.enabled = false;
         }
 
+
+
         if (PoolVidas.instance != null)
         {
             // Soltamos el cubo en la posición actual del enemigo
@@ -66,6 +68,17 @@ public class EnemyController : MonoBehaviour
             PoolMunicion.instance.SoltarMunicion(transform.position + Vector3.up * 1.0f);
         }
 
+
+        SpawnearEnemigos spawner = Object.FindFirstObjectByType<SpawnearEnemigos>();
+
+        if (spawner != null)
+        {
+            spawner.EnemigosEliminados(); // Ahora sí restará correctamente
+            
+        }
+
+        // 2. Regresamos al pool como hacíamos antes
+        //PoolEnemigos.instance.PushObject(this.gameObject);
 
     }
 

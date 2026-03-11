@@ -49,7 +49,8 @@ public class CantidadVidas : MonoBehaviour
 
         if (gameObject.CompareTag("ENEMIGO"))
         {
-            Debug.Log("barra vida");
+          
+            barraDeVida.fillAmount = (float)vidas / vidasMaximas;
 
             if (vidas <= 0)
             {
