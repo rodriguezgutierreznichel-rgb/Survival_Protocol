@@ -14,11 +14,11 @@ public class CantidadVidas : MonoBehaviour
     public Image barraDeVida;
     public int vidas = 3;
 
-   
 
-    
 
    
+
+
 
     public void Start()
     {
@@ -56,6 +56,13 @@ public class CantidadVidas : MonoBehaviour
             {
                 RecibirDañoEnemigo();
             }
+        }
+
+        if (vidas == 1 && gameObject.CompareTag("ENEMIGO"))
+        {
+            Debug.Log("Tiene poca vida");
+            PlanDeHuida();
+            
         }
  
     }
@@ -99,7 +106,14 @@ public class CantidadVidas : MonoBehaviour
             barraDeVida.fillAmount = (float)vidas / vidasMaximas;
         }
 
-        Debug.Log("Vida recuperada. Vidas actuales: " + vidas);
+       
+    }
+
+    public void PlanDeHuida()
+    {
+        CentralMachine centralMachine = GetComponent<CentralMachine>();
+       
+        centralMachine.EstadoHuir();
     }
 
 

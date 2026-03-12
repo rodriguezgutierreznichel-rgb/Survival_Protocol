@@ -32,6 +32,7 @@ public class CentralMachine : MonoBehaviour
     public float probabilidadDeAcierto = 0.5f;
     public float tiempo = 0f;
 
+   
 
     //Animaciones
     public Animator animator;
@@ -85,5 +86,10 @@ public class CentralMachine : MonoBehaviour
     {
         //CambiarEstado(new EstadoAtaque());
         CambiarEstado(new ESTADOATAQUE1());
+    }
+
+    public void EstadoHuir()
+    {
+        CambiarEstado(new EstadoHuir());
     }
 }
